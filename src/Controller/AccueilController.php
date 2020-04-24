@@ -18,4 +18,14 @@ class AccueilController
 
     return new Response($content);
   }
+
+  public function viewAction()
+  {
+    $advert = new Advert;
+    $advert->setContent("Recherche développeur Symfony3.");
+	
+    return $this->render('OCPlatformBundle:Advert:view.html.twig', array(
+      'advert' => $advert
+    ));
+  }
 }
