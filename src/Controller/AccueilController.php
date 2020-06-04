@@ -5,6 +5,8 @@ namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Avis;
 use Twig\Environment;
 
 class AccueilController
@@ -14,12 +16,12 @@ class AccueilController
    */
   public function index(Environment $twig)
   {
-  $content = $twig->render('index.html.twig'/*, ['name' => 'winzou']*/);
+    $content = $twig->render('index.html.twig'/*, ['name' => 'winzou']*/);
 
     return new Response($content);
   }
 
-  public function viewAction()
+  /*public function viewAction()
   {
     $advert = new Advert;
     $advert->setContent("Recherche développeur Symfony3.");
@@ -27,5 +29,5 @@ class AccueilController
     return $this->render('OCPlatformBundle:Advert:view.html.twig', array(
       'advert' => $advert
     ));
-  }
+  }*/
 }

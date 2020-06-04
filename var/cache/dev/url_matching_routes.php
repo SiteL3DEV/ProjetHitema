@@ -14,6 +14,11 @@ return [
         '/_profiler/phpinfo' => [[['_route' => '_profiler_phpinfo', '_controller' => 'web_profiler.controller.profiler::phpinfoAction'], null, null, null, false, false, null]],
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
         '/accueil' => [[['_route' => 'oc_accueil_index', '_controller' => 'App\\Controller\\AccueilController::index'], null, null, null, false, false, null]],
+        '/avis' => [[['_route' => 'creer_avis', '_controller' => 'App\\Controller\\AvisController::creerAvis'], null, null, null, false, false, null]],
+        '/getavis' => [[['_route' => 'recup_avis', '_controller' => 'App\\Controller\\AvisController::getAvis'], null, null, null, false, false, null]],
+        '/login' => [[['_route' => 'security_login', '_controller' => 'App\\Controller\\SecurityController::login'], null, null, null, false, false, null]],
+        '/logout' => [[['_route' => 'security_logout', '_controller' => 'App\\Controller\\SecurityController::logout'], null, null, null, false, false, null]],
+        '/createuser' => [[['_route' => 'create_user', '_controller' => 'App\\Controller\\UtilisateursController::createUser'], null, null, null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'
