@@ -2,10 +2,12 @@
 
 namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UtilisateursRepository")
  */
-class Utilisateurs
+class Utilisateurs implements UserInterface
 {
   /**
  * @ORM\Id
@@ -16,11 +18,11 @@ class Utilisateurs
   /**
  * @ORM\Column(type="string", length=50)
  */
-  private $login;
+  private $username;
   /**
  * @ORM\Column(type="string", length=50)
  */
-  private $pass;
+  private $password;
   /**
  * @ORM\Column(type="string", length=50)
  */
@@ -41,24 +43,27 @@ class Utilisateurs
  * @ORM\Column(type="string", length=60)
  */
   private $type;
-
+  /**
+   * @ORM\Column(type="json")
+   */
+  private $roles = [];
 
   /**
-   * Get the value of login
+   * Get the value of username
    */ 
-  public function getLogin()
+  public function getUsername()
   {
-    return $this->login;
+    return $this->username;
   }
 
   /**
-   * Set the value of login
+   * Set the value of username
    *
    * @return  self
    */ 
-  public function setLogin($login)
+  public function setUsername($username)
   {
-    $this->login = $login;
+    $this->username = $username;
 
     return $this;
   }
@@ -66,9 +71,9 @@ class Utilisateurs
   /**
    * Get the value of pass
    */ 
-  public function getPass()
+  public function getPassword()
   {
-    return $this->pass;
+    return $this->password;
   }
 
   /**
@@ -76,9 +81,9 @@ class Utilisateurs
    *
    * @return  self
    */ 
-  public function setPass($pass)
+  public function setPassword($password)
   {
-    $this->pass = $pass;
+    $this->password = $password;
 
     return $this;
   }
@@ -181,5 +186,38 @@ class Utilisateurs
     $this->type = $type;
 
     return $this;
+  }
+
+  /**
+   * Get the value of id
+   */ 
+  public function getId()
+  {
+    return $this->id;
+  }
+  public function getRoles(): array
+  {
+      $roles = $this->roles;
+
+      // il est obligatoire d'avoir au moins un rôle si on est authentifié, par convention c'est ROLE_USER
+      if (empty($roles)) {
+          $roles[] = 'ROLE_USER';
+      }
+
+      return array_unique($roles);
+  }
+
+  public function setRoles(array $roles): void
+  {
+      $this->roles = $roles;
+  }
+
+  public function getSalt(): ?string
+  {
+      return null;
+  }
+
+  public function eraseCredentials(): void
+  {
   }
 }

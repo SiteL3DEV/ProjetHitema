@@ -291,7 +291,7 @@ class __TwigTemplate_b52ceb2854750f5c93f6216741e59fbd38e5b77df5ff64c95cfd0f3db06
       </div>
       <div class=\"top-menu\">
         <ul class=\"nav pull-right top-menu\">
-          <li><a class=\"logout\" href=\"login.html\">Logout</a></li>
+          <li><a class=\"logout\" href=\"login\">Logout</a></li>
         </ul>
       </div>
     </header>
@@ -830,7 +830,7 @@ class __TwigTemplate_b52ceb2854750f5c93f6216741e59fbd38e5b77df5ff64c95cfd0f3db06
       </div>
       <div class=\"top-menu\">
         <ul class=\"nav pull-right top-menu\">
-          <li><a class=\"logout\" href=\"login.html\">Logout</a></li>
+          <li><a class=\"logout\" href=\"login\">Logout</a></li>
         </ul>
       </div>
     </header>

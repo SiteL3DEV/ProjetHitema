@@ -109,4 +109,33 @@ class Commande
 
     return $this;
   }
+
+  public function getId(): ?int
+  {
+      return $this->id;
+  }
+
+  public function getIdProduit(): ?int
+  {
+      return $this->id_produit;
+  }
+
+  public function setIdProduit(int $id_produit): self
+  {
+      $this->id_produit = $id_produit;
+
+      return $this;
+  }
+
+  public function getIdUtilisateur(): ?int
+  {
+      return $this->id_utilisateur;
+  }
+
+  public function setIdUtilisateur(int $id_utilisateur): self
+  {
+      $this->id_utilisateur = $id_utilisateur;
+
+      return $this;
+  }
 }

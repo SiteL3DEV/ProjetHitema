@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="Dashboard">
+  <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+  <title>Dashio - Bootstrap Admin Template</title>
+
+  <!-- Favicons -->
+  <link href="img/favicon.png" rel="icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Bootstrap core CSS -->
+  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!--external css-->
+  <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/style-responsive.css" rel="stylesheet">
+  </head>
+
+        <body>
+                <div class="well">
+                    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+                    {{ form_errors(form) }}
+                    <div class="form-group row">
+                      {# Génération du label. #}
+                      {{ form_label(form.username, "Nom d'utilisateur", {'label_attr': {'class': 'col-md-2 control-label'}}) }}
+                      {{ form_errors(form.username) }}
+
+                      <div class="col-md-8">
+                        {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      {{ form_label(form.password, "Mot de passe", {'label_attr': {'class': 'col-md-2 control-label'}}) }}
+                      {{ form_errors(form.password) }}
+                      <div class="col-md-8">
+                        {{ form_widget(form.password, {'attr': {'class': 'form-control'}}) }}
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      {{ form_label(form.nom, "Nom", {'label_attr': {'class': 'col-md-2 control-label'}}) }}
+                      {{ form_errors(form.nom) }}
+                      <div class="col-md-8">
+                        {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      {{ form_label(form.prenom, "Prénom", {'label_attr': {'class': 'col-md-2 control-label'}}) }}
+                      {{ form_errors(form.prenom) }}
+                      <div class="col-md-8">
+                        {{ form_widget(form.prenom, {'attr': {'class': 'form-control'}}) }}
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      {{ form_label(form.adresse, "Adresse", {'label_attr': {'class': 'col-md-2 control-label'}}) }}
+                      {{ form_errors(form.adresse) }}
+                      <div class="col-md-8">
+                        {{ form_widget(form.adresse, {'attr': {'class': 'form-control'}}) }}
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      {{ form_label(form.mail, "Mail", {'label_attr': {'class': 'col-md-2 control-label'}}) }}
+                      {{ form_errors(form.mail) }}
+                      <div class="col-md-8">
+                        {{ form_widget(form.mail, {'attr': {'class': 'form-control'}}) }}
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      {{ form_label(form.type, "Type", {'label_attr': {'class': 'col-md-2 control-label'}}) }}
+                      {{ form_errors(form.type) }}
+                      <div class="col-md-8">
+                        {{ form_widget(form.type, {'attr': {'class': 'form-control'}}) }}
+                      </div>
+                    </div>
+
+                    {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
+
+                    {# Génération automatique des champs pas encore écrits.
+                      Dans cet exemple, ce serait le champ CSRF (géré automatiquement par Symfony !)
+                      et tous les champs cachés (type « hidden »). #}
+                    {{ form_rest(form) }}
+                    {{ form_end(form) }}
+                </div>
+                  <!-- js placed at the end of the document so the pages load faster -->
+  <script src="{{ asset('lib/jquery/jquery.min.js') }}"></script>
+  <script src="{{ asset('lib/bootstrap/js/bootstrap.min.js') }}"></script>
+  <link href="{{ asset('lib/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <!--BACKSTRETCH-->
+  <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
+  <script type="text/javascript" src="{{ asset('lib/jquery.backstretch.min.js') }}"></script>
+  <script>
+    /*$.backstretch("{{asset("build/img/login-bg.jpg")}}", {
+      speed: 500
+    });
+    $('#createUser').on('click', function(){
+      $('#modalCreateUser').modal('show');
+    });*/
+  </script>
+</body>
+
+</html>
