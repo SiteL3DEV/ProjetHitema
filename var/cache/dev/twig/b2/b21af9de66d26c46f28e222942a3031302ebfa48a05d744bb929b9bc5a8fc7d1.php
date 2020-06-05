@@ -1,14 +1,6 @@
 <?php
 
 use Twig\Environment;
-use Twig\Error\LoaderError;
-use Twig\Error\RuntimeError;
-use Twig\Extension\SandboxExtension;
-use Twig\Markup;
-use Twig\Sandbox\SecurityError;
-use Twig\Sandbox\SecurityNotAllowedTagError;
-use Twig\Sandbox\SecurityNotAllowedFilterError;
-use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
@@ -71,6 +63,6 @@ License: https://templatemag.com/license/";
 Template Name: Dashio
 Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
 Author: TemplateMag.com
-License: https://templatemag.com/license/", "Readme.txt", "C:\\wamp64\\www\\ProjetHitema\\templates\\Readme.txt");
+License: https://templatemag.com/license/", "Readme.txt", "C:\\wamp\\www\\ProjetHitema\\templates\\Readme.txt");
     }
 }

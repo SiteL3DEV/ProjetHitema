@@ -1,14 +1,6 @@
 <?php
 
 use Twig\Environment;
-use Twig\Error\LoaderError;
-use Twig\Error\RuntimeError;
-use Twig\Extension\SandboxExtension;
-use Twig\Markup;
-use Twig\Sandbox\SecurityError;
-use Twig\Sandbox\SecurityNotAllowedTagError;
-use Twig\Sandbox\SecurityNotAllowedFilterError;
-use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
@@ -81,6 +73,6 @@ class __TwigTemplate_4dd0a7109152a610420a272c177ccc821b41ceffb9c371bba3a357e4081
     public function getSourceContext()
     {
         return new Source("{% block panel '' %}
-", "@WebProfiler/Profiler/ajax_layout.html.twig", "C:\\wamp64\\www\\ProjetHitema\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Profiler\\ajax_layout.html.twig");
+", "@WebProfiler/Profiler/ajax_layout.html.twig", "C:\\wamp\\www\\ProjetHitema\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Profiler\\ajax_layout.html.twig");
     }
 }

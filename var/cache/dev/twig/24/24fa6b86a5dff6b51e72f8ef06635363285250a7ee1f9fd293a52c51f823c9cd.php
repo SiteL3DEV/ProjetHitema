@@ -1,14 +1,8 @@
 <?php
 
 use Twig\Environment;
-use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
-use Twig\Extension\SandboxExtension;
 use Twig\Markup;
-use Twig\Sandbox\SecurityError;
-use Twig\Sandbox\SecurityNotAllowedTagError;
-use Twig\Sandbox\SecurityNotAllowedFilterError;
-use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
@@ -78,7 +72,7 @@ class __TwigTemplate_fd13fba3ceb930a5050a09adf6135ffd1ef5426f900aefee04b438e28a6
         // line 7
         echo twig_escape_filter($this->env, sprintf("%.1f", ((twig_get_attribute($this->env, $this->source, (isset($context["collector"]) || array_key_exists("collector", $context) ? $context["collector"] : (function () { throw new RuntimeError('Variable "collector" does not exist.', 7, $this->source); })()), "memory", [], "any", false, false, false, 7) / 1024) / 1024)), "html", null, true);
         echo "</span>
-        <span class=\"sf-toolbar-label\">MB</span>
+        <span class=\"sf-toolbar-label\">MiB</span>
     ";
         $context["icon"] = ('' === $tmp = ob_get_clean()) ? '' : new Markup($tmp, $this->env->getCharset());
         // line 10
@@ -92,14 +86,14 @@ class __TwigTemplate_fd13fba3ceb930a5050a09adf6135ffd1ef5426f900aefee04b438e28a6
             <span>";
         // line 14
         echo twig_escape_filter($this->env, sprintf("%.1f", ((twig_get_attribute($this->env, $this->source, (isset($context["collector"]) || array_key_exists("collector", $context) ? $context["collector"] : (function () { throw new RuntimeError('Variable "collector" does not exist.', 14, $this->source); })()), "memory", [], "any", false, false, false, 14) / 1024) / 1024)), "html", null, true);
-        echo " MB</span>
+        echo " MiB</span>
         </div>
 
         <div class=\"sf-toolbar-info-piece\">
             <b>PHP memory limit</b>
             <span>";
         // line 19
-        ((0 === twig_compare(twig_get_attribute($this->env, $this->source, (isset($context["collector"]) || array_key_exists("collector", $context) ? $context["collector"] : (function () { throw new RuntimeError('Variable "collector" does not exist.', 19, $this->source); })()), "memoryLimit", [], "any", false, false, false, 19),  -1)) ? (print ("Unlimited")) : (print (twig_escape_filter($this->env, sprintf("%.0f MB", ((twig_get_attribute($this->env, $this->source, (isset($context["collector"]) || array_key_exists("collector", $context) ? $context["collector"] : (function () { throw new RuntimeError('Variable "collector" does not exist.', 19, $this->source); })()), "memoryLimit", [], "any", false, false, false, 19) / 1024) / 1024)), "html", null, true))));
+        ((0 === twig_compare(twig_get_attribute($this->env, $this->source, (isset($context["collector"]) || array_key_exists("collector", $context) ? $context["collector"] : (function () { throw new RuntimeError('Variable "collector" does not exist.', 19, $this->source); })()), "memoryLimit", [], "any", false, false, false, 19),  -1)) ? (print ("Unlimited")) : (print (twig_escape_filter($this->env, sprintf("%.0f MiB", ((twig_get_attribute($this->env, $this->source, (isset($context["collector"]) || array_key_exists("collector", $context) ? $context["collector"] : (function () { throw new RuntimeError('Variable "collector" does not exist.', 19, $this->source); })()), "memoryLimit", [], "any", false, false, false, 19) / 1024) / 1024)), "html", null, true))));
         echo "</span>
         </div>
     ";
@@ -143,23 +137,23 @@ class __TwigTemplate_fd13fba3ceb930a5050a09adf6135ffd1ef5426f900aefee04b438e28a6
         {% set status_color = (collector.memory / 1024 / 1024) > 50 ? 'yellow' : '' %}
         {{ include('@WebProfiler/Icon/memory.svg') }}
         <span class=\"sf-toolbar-value\">{{ '%.1f'|format(collector.memory / 1024 / 1024) }}</span>
-        <span class=\"sf-toolbar-label\">MB</span>
+        <span class=\"sf-toolbar-label\">MiB</span>
     {% endset %}
 
     {% set text %}
         <div class=\"sf-toolbar-info-piece\">
             <b>Peak memory usage</b>
-            <span>{{ '%.1f'|format(collector.memory / 1024 / 1024) }} MB</span>
+            <span>{{ '%.1f'|format(collector.memory / 1024 / 1024) }} MiB</span>
         </div>
 
         <div class=\"sf-toolbar-info-piece\">
             <b>PHP memory limit</b>
-            <span>{{ collector.memoryLimit == -1 ? 'Unlimited' : '%.0f MB'|format(collector.memoryLimit / 1024 / 1024) }}</span>
+            <span>{{ collector.memoryLimit == -1 ? 'Unlimited' : '%.0f MiB'|format(collector.memoryLimit / 1024 / 1024) }}</span>
         </div>
     {% endset %}
 
     {{ include('@WebProfiler/Profiler/toolbar_item.html.twig', { link: profiler_url, name: 'time', status: status_color }) }}
 {% endblock %}
-", "@WebProfiler/Collector/memory.html.twig", "C:\\wamp64\\www\\ProjetHitema\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Collector\\memory.html.twig");
+", "@WebProfiler/Collector/memory.html.twig", "C:\\wamp\\www\\ProjetHitema\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Collector\\memory.html.twig");
     }
 }

@@ -1,14 +1,6 @@
 <?php
 
 use Twig\Environment;
-use Twig\Error\LoaderError;
-use Twig\Error\RuntimeError;
-use Twig\Extension\SandboxExtension;
-use Twig\Markup;
-use Twig\Sandbox\SecurityError;
-use Twig\Sandbox\SecurityNotAllowedTagError;
-use Twig\Sandbox\SecurityNotAllowedFilterError;
-use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
@@ -1085,6 +1077,6 @@ class __TwigTemplate_e623485d3fe3f83b9c7e34284cb2a55b178593a2ff7308f38809c25fe8e
 </body>
 
 </html>
-", "chat_room.html", "C:\\wamp64\\www\\ProjetHitema\\templates\\chat_room.html");
+", "chat_room.html", "C:\\wamp\\www\\ProjetHitema\\templates\\chat_room.html");
     }
 }

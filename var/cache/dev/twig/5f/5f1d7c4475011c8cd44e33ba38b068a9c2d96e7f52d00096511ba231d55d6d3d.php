@@ -1,14 +1,6 @@
 <?php
 
 use Twig\Environment;
-use Twig\Error\LoaderError;
-use Twig\Error\RuntimeError;
-use Twig\Extension\SandboxExtension;
-use Twig\Markup;
-use Twig\Sandbox\SecurityError;
-use Twig\Sandbox\SecurityNotAllowedTagError;
-use Twig\Sandbox\SecurityNotAllowedFilterError;
-use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
@@ -1181,6 +1173,6 @@ class __TwigTemplate_1376b9811c0fa4771584a3b795e2b063be4e3a1cafd3003fc3931021252
 </body>
 
 </html>
-", "form_validation.html", "C:\\wamp64\\www\\ProjetHitema\\templates\\form_validation.html");
+", "form_validation.html", "C:\\wamp\\www\\ProjetHitema\\templates\\form_validation.html");
     }
 }

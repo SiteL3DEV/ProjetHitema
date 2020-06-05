@@ -1,14 +1,6 @@
 <?php
 
 use Twig\Environment;
-use Twig\Error\LoaderError;
-use Twig\Error\RuntimeError;
-use Twig\Extension\SandboxExtension;
-use Twig\Markup;
-use Twig\Sandbox\SecurityError;
-use Twig\Sandbox\SecurityNotAllowedTagError;
-use Twig\Sandbox\SecurityNotAllowedFilterError;
-use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
@@ -1015,6 +1007,6 @@ class __TwigTemplate_6669567ca047b64a725fd26874b216b47c68bbcee7afe569aa4d6117539
 </body>
 
 </html>
-", "flot_chart.html", "C:\\wamp64\\www\\ProjetHitema\\templates\\flot_chart.html");
+", "flot_chart.html", "C:\\wamp\\www\\ProjetHitema\\templates\\flot_chart.html");
     }
 }

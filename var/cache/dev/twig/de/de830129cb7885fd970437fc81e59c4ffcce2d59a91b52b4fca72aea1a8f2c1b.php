@@ -1,14 +1,7 @@
 <?php
 
 use Twig\Environment;
-use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
-use Twig\Extension\SandboxExtension;
-use Twig\Markup;
-use Twig\Sandbox\SecurityError;
-use Twig\Sandbox\SecurityNotAllowedTagError;
-use Twig\Sandbox\SecurityNotAllowedFilterError;
-use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
@@ -298,6 +291,6 @@ $context["trace"], "level", [], "any", false, false, false, 57), 2)) {
     Note: These matching logs are based on the current router configuration,
     which might differ from the configuration used when profiling this request.
 </p>
-", "@WebProfiler/Router/panel.html.twig", "C:\\wamp64\\www\\ProjetHitema\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Router\\panel.html.twig");
+", "@WebProfiler/Router/panel.html.twig", "C:\\wamp\\www\\ProjetHitema\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Router\\panel.html.twig");
     }
 }

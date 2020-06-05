@@ -1,14 +1,6 @@
 <?php
 
 use Twig\Environment;
-use Twig\Error\LoaderError;
-use Twig\Error\RuntimeError;
-use Twig\Extension\SandboxExtension;
-use Twig\Markup;
-use Twig\Sandbox\SecurityError;
-use Twig\Sandbox\SecurityNotAllowedTagError;
-use Twig\Sandbox\SecurityNotAllowedFilterError;
-use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
@@ -1391,6 +1383,6 @@ class __TwigTemplate_d5c32b99bb5649fba9d0fea757c28284628449bc3ecf8f052ad26dd0e08
 </body>
 
 </html>
-", "todo_list.html", "C:\\wamp64\\www\\ProjetHitema\\templates\\todo_list.html");
+", "todo_list.html", "C:\\wamp\\www\\ProjetHitema\\templates\\todo_list.html");
     }
 }

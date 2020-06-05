@@ -6,7 +6,7 @@
 use Symfony\Component\DependencyInjection\Dumper\Preloader;
 
 require dirname(__DIR__, 3).'\\vendor/autoload.php';
-require __DIR__.'/ContainerYez54s8/App_KernelDevDebugContainer.php';
+require __DIR__.'/ContainerXP3xjRy/App_KernelDevDebugContainer.php';
 
 $classes = [];
 $classes[] = 'Symfony\Bundle\FrameworkBundle\FrameworkBundle';
@@ -150,7 +150,7 @@ $classes[] = 'Doctrine\Bundle\DoctrineBundle\Command\ImportMappingDoctrineComman
 $classes[] = 'Doctrine\Bundle\DoctrineBundle\Command\Proxy\InfoDoctrineCommand';
 $classes[] = 'Doctrine\ORM\EntityManager';
 $classes[] = 'Doctrine\ORM\Configuration';
-$classes[] = 'Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain';
+$classes[] = 'Doctrine\Persistence\Mapping\Driver\MappingDriverChain';
 $classes[] = 'Doctrine\ORM\Mapping\Driver\AnnotationDriver';
 $classes[] = 'Doctrine\ORM\Mapping\UnderscoreNamingStrategy';
 $classes[] = 'Doctrine\ORM\Mapping\DefaultQuoteStrategy';
@@ -249,6 +249,7 @@ $classes[] = 'Symfony\Bundle\MakerBundle\Maker\MakeValidator';
 $classes[] = 'Symfony\Bundle\MakerBundle\Maker\MakeVoter';
 $classes[] = 'Symfony\Bundle\MakerBundle\Event\ConsoleErrorSubscriber';
 $classes[] = 'Symfony\Bundle\MakerBundle\Doctrine\DoctrineHelper';
+$classes[] = 'Symfony\Bundle\MakerBundle\Doctrine\EntityClassGenerator';
 $classes[] = 'Symfony\Bundle\MakerBundle\FileManager';
 $classes[] = 'Symfony\Bundle\MakerBundle\Util\AutoloaderUtil';
 $classes[] = 'Symfony\Bundle\MakerBundle\Util\ComposerAutoloaderFinder';

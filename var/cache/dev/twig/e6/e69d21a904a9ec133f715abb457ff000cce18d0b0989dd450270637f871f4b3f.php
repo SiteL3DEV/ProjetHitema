@@ -1,14 +1,7 @@
 <?php
 
 use Twig\Environment;
-use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
-use Twig\Extension\SandboxExtension;
-use Twig\Markup;
-use Twig\Sandbox\SecurityError;
-use Twig\Sandbox\SecurityNotAllowedTagError;
-use Twig\Sandbox\SecurityNotAllowedFilterError;
-use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
@@ -1093,6 +1086,6 @@ $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBl
     {%- set force_error = true -%}
     {{- block('form_row') -}}
 {%- endblock datetime_row %}
-", "bootstrap_base_layout.html.twig", "C:\\wamp64\\www\\ProjetHitema\\vendor\\symfony\\twig-bridge\\Resources\\views\\Form\\bootstrap_base_layout.html.twig");
+", "bootstrap_base_layout.html.twig", "C:\\wamp\\www\\ProjetHitema\\vendor\\symfony\\twig-bridge\\Resources\\views\\Form\\bootstrap_base_layout.html.twig");
     }
 }

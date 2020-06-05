@@ -1,14 +1,6 @@
 <?php
 
 use Twig\Environment;
-use Twig\Error\LoaderError;
-use Twig\Error\RuntimeError;
-use Twig\Extension\SandboxExtension;
-use Twig\Markup;
-use Twig\Sandbox\SecurityError;
-use Twig\Sandbox\SecurityNotAllowedTagError;
-use Twig\Sandbox\SecurityNotAllowedFilterError;
-use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
@@ -891,6 +883,6 @@ class __TwigTemplate_21cfab502d1bcd1fd2f3bf8fd27794ac44f1eec1537014f98db55afe1e0
 </body>
 
 </html>
-", "dropzone.html", "C:\\wamp64\\www\\ProjetHitema\\templates\\dropzone.html");
+", "dropzone.html", "C:\\wamp\\www\\ProjetHitema\\templates\\dropzone.html");
     }
 }

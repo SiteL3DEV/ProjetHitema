@@ -1,14 +1,6 @@
 <?php
 
 use Twig\Environment;
-use Twig\Error\LoaderError;
-use Twig\Error\RuntimeError;
-use Twig\Extension\SandboxExtension;
-use Twig\Markup;
-use Twig\Sandbox\SecurityError;
-use Twig\Sandbox\SecurityNotAllowedTagError;
-use Twig\Sandbox\SecurityNotAllowedFilterError;
-use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
@@ -1011,6 +1003,6 @@ class __TwigTemplate_f4fc36dffb9ea6d388a0d8dc2c5d8ac7e95937d30ef0ee2225e829a7b3e
 </body>
 
 </html>
-", "grids.html", "C:\\wamp64\\www\\ProjetHitema\\templates\\grids.html");
+", "grids.html", "C:\\wamp\\www\\ProjetHitema\\templates\\grids.html");
     }
 }

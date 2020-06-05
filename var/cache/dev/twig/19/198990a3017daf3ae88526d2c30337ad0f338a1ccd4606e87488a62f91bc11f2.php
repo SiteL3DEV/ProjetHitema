@@ -1,14 +1,6 @@
 <?php
 
 use Twig\Environment;
-use Twig\Error\LoaderError;
-use Twig\Error\RuntimeError;
-use Twig\Extension\SandboxExtension;
-use Twig\Markup;
-use Twig\Sandbox\SecurityError;
-use Twig\Sandbox\SecurityNotAllowedTagError;
-use Twig\Sandbox\SecurityNotAllowedFilterError;
-use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
@@ -1053,6 +1045,6 @@ class __TwigTemplate_9162b007b2c50121c2fa01f0196e79180344f134a3492db46a99990b2d1
 </body>
 
 </html>
-", "lobby.html", "C:\\wamp64\\www\\ProjetHitema\\templates\\lobby.html");
+", "lobby.html", "C:\\wamp\\www\\ProjetHitema\\templates\\lobby.html");
     }
 }

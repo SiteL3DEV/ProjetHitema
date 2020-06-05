@@ -1,14 +1,6 @@
 <?php
 
 use Twig\Environment;
-use Twig\Error\LoaderError;
-use Twig\Error\RuntimeError;
-use Twig\Extension\SandboxExtension;
-use Twig\Markup;
-use Twig\Sandbox\SecurityError;
-use Twig\Sandbox\SecurityNotAllowedTagError;
-use Twig\Sandbox\SecurityNotAllowedFilterError;
-use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
@@ -1339,6 +1331,6 @@ class __TwigTemplate_f8bd152b2fb808d990cce715aa200c18a53430428ccebf847cf00144084
 </body>
 
 </html>
-", "basic_table.html", "C:\\wamp64\\www\\ProjetHitema\\templates\\basic_table.html");
+", "basic_table.html", "C:\\wamp\\www\\ProjetHitema\\templates\\basic_table.html");
     }
 }

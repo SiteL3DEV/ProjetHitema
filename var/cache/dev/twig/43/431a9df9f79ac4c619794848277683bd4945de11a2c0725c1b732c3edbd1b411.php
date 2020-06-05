@@ -1,14 +1,6 @@
 <?php
 
 use Twig\Environment;
-use Twig\Error\LoaderError;
-use Twig\Error\RuntimeError;
-use Twig\Extension\SandboxExtension;
-use Twig\Markup;
-use Twig\Sandbox\SecurityError;
-use Twig\Sandbox\SecurityNotAllowedTagError;
-use Twig\Sandbox\SecurityNotAllowedFilterError;
-use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
@@ -89,6 +81,6 @@ class __TwigTemplate_853d2bcce0ff806a7a1eaefd8f6e53ba363aa0510192dbdb267103368c1
         ?>
     </div>
 <?php endif ?>
-", "@Framework/Form/week_widget.html.php", "C:\\wamp64\\www\\ProjetHitema\\vendor\\symfony\\framework-bundle\\Resources\\views\\Form\\week_widget.html.php");
+", "@Framework/Form/week_widget.html.php", "C:\\wamp\\www\\ProjetHitema\\vendor\\symfony\\framework-bundle\\Resources\\views\\Form\\week_widget.html.php");
     }
 }

@@ -1,14 +1,6 @@
 <?php
 
 use Twig\Environment;
-use Twig\Error\LoaderError;
-use Twig\Error\RuntimeError;
-use Twig\Extension\SandboxExtension;
-use Twig\Markup;
-use Twig\Sandbox\SecurityError;
-use Twig\Sandbox\SecurityNotAllowedTagError;
-use Twig\Sandbox\SecurityNotAllowedFilterError;
-use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
@@ -977,6 +969,6 @@ class __TwigTemplate_feb1a99ae3eac38fa91737ebfdb7b2da32a26b63c4457817f800ea258c8
 </body>
 
 </html>
-", "google_maps.html", "C:\\wamp64\\www\\ProjetHitema\\templates\\google_maps.html");
+", "google_maps.html", "C:\\wamp\\www\\ProjetHitema\\templates\\google_maps.html");
     }
 }

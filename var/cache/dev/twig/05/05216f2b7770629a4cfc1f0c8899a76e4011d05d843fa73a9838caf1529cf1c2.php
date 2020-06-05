@@ -1,14 +1,6 @@
 <?php
 
 use Twig\Environment;
-use Twig\Error\LoaderError;
-use Twig\Error\RuntimeError;
-use Twig\Extension\SandboxExtension;
-use Twig\Markup;
-use Twig\Sandbox\SecurityError;
-use Twig\Sandbox\SecurityNotAllowedTagError;
-use Twig\Sandbox\SecurityNotAllowedFilterError;
-use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
@@ -1889,6 +1881,6 @@ class __TwigTemplate_a929ce9ad1f424e2382149ce39b63cab2cffcc813e557757996667808ce
 </body>
 
 </html>
-", "font_awesome.html", "C:\\wamp64\\www\\ProjetHitema\\templates\\font_awesome.html");
+", "font_awesome.html", "C:\\wamp\\www\\ProjetHitema\\templates\\font_awesome.html");
     }
 }

@@ -1,14 +1,6 @@
 <?php
 
 use Twig\Environment;
-use Twig\Error\LoaderError;
-use Twig\Error\RuntimeError;
-use Twig\Extension\SandboxExtension;
-use Twig\Markup;
-use Twig\Sandbox\SecurityError;
-use Twig\Sandbox\SecurityNotAllowedTagError;
-use Twig\Sandbox\SecurityNotAllowedFilterError;
-use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
@@ -337,6 +329,6 @@ jQuery(document).ready(function( \$ ) {
     \$(\".navbar-collapse.collapse\").removeClass('in');
   });
 });
-      ", "credits.txt", "C:\\wamp64\\www\\ProjetHitema\\templates\\credits.txt");
+      ", "credits.txt", "C:\\wamp\\www\\ProjetHitema\\templates\\credits.txt");
     }
 }

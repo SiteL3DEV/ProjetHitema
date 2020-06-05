@@ -1,14 +1,8 @@
 <?php
 
 use Twig\Environment;
-use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
-use Twig\Extension\SandboxExtension;
 use Twig\Markup;
-use Twig\Sandbox\SecurityError;
-use Twig\Sandbox\SecurityNotAllowedTagError;
-use Twig\Sandbox\SecurityNotAllowedFilterError;
-use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
@@ -345,7 +339,7 @@ class __TwigTemplate_d16f6b8af252f1c52a32a3e2fec94b0216df7142c0d4c6337d51f4cd0dc
         if (0 === twig_compare("explain", (isset($context["page"]) || array_key_exists("page", $context) ? $context["page"] : (function () { throw new RuntimeError('Variable "page" does not exist.', 114, $this->source); })()))) {
             // line 115
             echo "        ";
-            echo $this->env->getRuntime('Symfony\Bridge\Twig\Extension\HttpKernelRuntime')->renderFragment(Symfony\Bridge\Twig\Extension\HttpKernelExtension::controller("DoctrineBundle:Profiler:explain", ["token" =>             // line 116
+            echo $this->env->getRuntime('Symfony\Bridge\Twig\Extension\HttpKernelRuntime')->renderFragment(Symfony\Bridge\Twig\Extension\HttpKernelExtension::controller("Doctrine\\Bundle\\DoctrineBundle\\Controller\\ProfilerController::explainAction", ["token" =>             // line 116
 (isset($context["token"]) || array_key_exists("token", $context) ? $context["token"] : (function () { throw new RuntimeError('Variable "token" does not exist.', 116, $this->source); })()), "panel" => "db", "connectionName" => twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source,             // line 118
 (isset($context["request"]) || array_key_exists("request", $context) ? $context["request"] : (function () { throw new RuntimeError('Variable "request" does not exist.', 118, $this->source); })()), "query", [], "any", false, false, false, 118), "get", [0 => "connection"], "method", false, false, false, 118), "query" => twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source,             // line 119
 (isset($context["request"]) || array_key_exists("request", $context) ? $context["request"] : (function () { throw new RuntimeError('Variable "request" does not exist.', 119, $this->source); })()), "query", [], "any", false, false, false, 119), "get", [0 => "query"], "method", false, false, false, 119)]));
@@ -1429,7 +1423,7 @@ class __TwigTemplate_d16f6b8af252f1c52a32a3e2fec94b0216df7142c0d4c6337d51f4cd0dc
     {% set profiler_markup_version = profiler_markup_version|default(1) %}
 
     {% if 'explain' == page %}
-        {{ render(controller('DoctrineBundle:Profiler:explain', {
+        {{ render(controller('Doctrine\\\\Bundle\\\\DoctrineBundle\\\\Controller\\\\ProfilerController::explainAction', {
             token: token,
             panel: 'db',
             connectionName: request.query.get('connection'),
@@ -1843,6 +1837,6 @@ class __TwigTemplate_d16f6b8af252f1c52a32a3e2fec94b0216df7142c0d4c6337d51f4cd0dc
         </tbody>
     </table>
 {% endmacro %}
-", "@Doctrine/Collector/db.html.twig", "C:\\wamp64\\www\\ProjetHitema\\vendor\\doctrine\\doctrine-bundle\\Resources\\views\\Collector\\db.html.twig");
+", "@Doctrine/Collector/db.html.twig", "C:\\wamp\\www\\ProjetHitema\\vendor\\doctrine\\doctrine-bundle\\Resources\\views\\Collector\\db.html.twig");
     }
 }

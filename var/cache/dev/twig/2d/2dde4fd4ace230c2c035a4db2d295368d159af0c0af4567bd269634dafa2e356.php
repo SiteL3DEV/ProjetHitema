@@ -1,14 +1,6 @@
 <?php
 
 use Twig\Environment;
-use Twig\Error\LoaderError;
-use Twig\Error\RuntimeError;
-use Twig\Extension\SandboxExtension;
-use Twig\Markup;
-use Twig\Sandbox\SecurityError;
-use Twig\Sandbox\SecurityNotAllowedTagError;
-use Twig\Sandbox\SecurityNotAllowedFilterError;
-use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
@@ -1473,6 +1465,6 @@ class __TwigTemplate_4319f17e26909c64cf4d345f9a3124ebb75f13962172555c330c26c2926
 </body>
 
 </html>
-", "responsive_table.html", "C:\\wamp64\\www\\ProjetHitema\\templates\\responsive_table.html");
+", "responsive_table.html", "C:\\wamp\\www\\ProjetHitema\\templates\\responsive_table.html");
     }
 }

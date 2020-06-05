@@ -1,14 +1,6 @@
 <?php
 
 use Twig\Environment;
-use Twig\Error\LoaderError;
-use Twig\Error\RuntimeError;
-use Twig\Extension\SandboxExtension;
-use Twig\Markup;
-use Twig\Sandbox\SecurityError;
-use Twig\Sandbox\SecurityNotAllowedTagError;
-use Twig\Sandbox\SecurityNotAllowedFilterError;
-use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
@@ -937,6 +929,6 @@ class __TwigTemplate_63c63b8e7470e94b14d449b9a3cc1000220b8c82be5b1b09d8b688ae960
 </body>
 
 </html>
-", "calendar.html", "C:\\wamp64\\www\\ProjetHitema\\templates\\calendar.html");
+", "calendar.html", "C:\\wamp\\www\\ProjetHitema\\templates\\calendar.html");
     }
 }

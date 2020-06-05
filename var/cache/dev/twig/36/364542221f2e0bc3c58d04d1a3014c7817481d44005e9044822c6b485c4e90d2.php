@@ -1,14 +1,6 @@
 <?php
 
 use Twig\Environment;
-use Twig\Error\LoaderError;
-use Twig\Error\RuntimeError;
-use Twig\Extension\SandboxExtension;
-use Twig\Markup;
-use Twig\Sandbox\SecurityError;
-use Twig\Sandbox\SecurityNotAllowedTagError;
-use Twig\Sandbox\SecurityNotAllowedFilterError;
-use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
@@ -1083,6 +1075,6 @@ class __TwigTemplate_1b8a46b54a438a87f6fd29373ad96e16d8684f2ba242a1800b9b9efc060
 </body>
 
 </html>
-", "invoice.html", "C:\\wamp64\\www\\ProjetHitema\\templates\\invoice.html");
+", "invoice.html", "C:\\wamp\\www\\ProjetHitema\\templates\\invoice.html");
     }
 }

@@ -1,14 +1,6 @@
 <?php
 
 use Twig\Environment;
-use Twig\Error\LoaderError;
-use Twig\Error\RuntimeError;
-use Twig\Extension\SandboxExtension;
-use Twig\Markup;
-use Twig\Sandbox\SecurityError;
-use Twig\Sandbox\SecurityNotAllowedTagError;
-use Twig\Sandbox\SecurityNotAllowedFilterError;
-use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
@@ -267,6 +259,6 @@ class __TwigTemplate_efd5979a7e277a8ac245f1de7537ed4a216e5177a650e92954eaf2f10ca
 </body>
 
 </html>
-", "lock_screen.html", "C:\\wamp64\\www\\ProjetHitema\\templates\\lock_screen.html");
+", "lock_screen.html", "C:\\wamp\\www\\ProjetHitema\\templates\\lock_screen.html");
     }
 }

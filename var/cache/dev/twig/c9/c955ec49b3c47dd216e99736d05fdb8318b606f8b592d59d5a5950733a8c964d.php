@@ -1,14 +1,6 @@
 <?php
 
 use Twig\Environment;
-use Twig\Error\LoaderError;
-use Twig\Error\RuntimeError;
-use Twig\Extension\SandboxExtension;
-use Twig\Markup;
-use Twig\Sandbox\SecurityError;
-use Twig\Sandbox\SecurityNotAllowedTagError;
-use Twig\Sandbox\SecurityNotAllowedFilterError;
-use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
@@ -1297,6 +1289,6 @@ class __TwigTemplate_323a2c376b0219c8af7f6ebcfaa79af5dce1fff88053d53a0bb2d2b87d6
 </body>
 
 </html>
-", "advanced_form_components.html", "C:\\wamp64\\www\\ProjetHitema\\templates\\advanced_form_components.html");
+", "advanced_form_components.html", "C:\\wamp\\www\\ProjetHitema\\templates\\advanced_form_components.html");
     }
 }

@@ -1,14 +1,6 @@
 <?php
 
 use Twig\Environment;
-use Twig\Error\LoaderError;
-use Twig\Error\RuntimeError;
-use Twig\Extension\SandboxExtension;
-use Twig\Markup;
-use Twig\Sandbox\SecurityError;
-use Twig\Sandbox\SecurityNotAllowedTagError;
-use Twig\Sandbox\SecurityNotAllowedFilterError;
-use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
@@ -991,6 +983,6 @@ class __TwigTemplate_c7d442df99e9d6237f8cb164275e09a032c181a3ad9e20ad128795549ce
 </body>
 
 </html>
-", "chartjs.html", "C:\\wamp64\\www\\ProjetHitema\\templates\\chartjs.html");
+", "chartjs.html", "C:\\wamp\\www\\ProjetHitema\\templates\\chartjs.html");
     }
 }
