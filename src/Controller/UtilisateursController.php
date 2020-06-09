@@ -32,7 +32,7 @@ class UtilisateursController extends AbstractController
           ->add('adresse',  TextType::class)
           ->add('mail',     TextType::class)
           ->add('type',     TextType::class)
-          ->add('save',     SubmitType::class)
+          ->add('Enregistrer',     SubmitType::class)
           ->getForm()
         ;
         // Si la requête est en POST
