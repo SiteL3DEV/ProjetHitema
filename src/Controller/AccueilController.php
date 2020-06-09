@@ -9,25 +9,22 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Entity\Avis;
 use Twig\Environment;
 
-class AccueilController
+class AccueilController extends AbstractController
 {
   /**
    * @Route("/accueil", name="oc_accueil_index")
    */
   public function index(Environment $twig)
   {
-    $content = $twig->render('index.html.twig'/*, ['name' => 'winzou']*/);
+    $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+    /** @var \App\Entity\User $user */
+    $user = $this->getUser();
+    $btnLogInOut = 'Se connecter';
+    if($user){
+      $btnLogInOut = 'Se déconnecter';
+    }
+    $content = $twig->render('index.html.twig', ['loginout' => $btnLogInOut]);
 
     return new Response($content);
   }
-
-  /*public function viewAction()
-  {
-    $advert = new Advert;
-    $advert->setContent("Recherche développeur Symfony3.");
-	
-    return $this->render('OCPlatformBundle:Advert:view.html.twig', array(
-      'advert' => $advert
-    ));
-  }*/
 }
