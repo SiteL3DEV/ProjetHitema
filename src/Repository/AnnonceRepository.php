@@ -27,7 +27,7 @@ class AnnonceRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('annonce')
             ->andWhere('annonce.nom like :nom')
-            ->setParameter('nom', $value)
+            ->setParameter('nom', '%'.$value.'%')
             ->orderBy('annonce.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
