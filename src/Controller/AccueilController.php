@@ -3,12 +3,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Avis;
+use Twig\Environment;
 use App\Entity\Annonce;
+use JMS\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Entity\Avis;
-use Twig\Environment;
 
 class AccueilController extends AbstractController
 {
@@ -41,5 +42,15 @@ class AccueilController extends AbstractController
                                                 ]);
 
     return new Response($content);
+  }
+
+  /**
+   * @Route("/tabannonces/{nom}", name="tab_annonces")
+   */
+  public function getTabAnnonces(string $nom,  SerializerInterface $serializer){
+    $em = $this->getDoctrine()->getManager();
+    $listAnnonces = $em->getRepository(Annonce::class)->findByNom($nom);
+    $response = $serializer->serialize($listAnnonces,'json');
+    return new Response($response);
   }
 }

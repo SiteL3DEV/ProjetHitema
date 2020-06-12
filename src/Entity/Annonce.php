@@ -41,6 +41,10 @@ class Annonce
  * @ORM\Column(type="string", length=200)
  */
   private $image;
+  /**
+ * @ORM\Column(type="string", length=200)
+ */
+  private $nom;
 
 
 
@@ -199,5 +203,25 @@ class Annonce
       $this->id_utilisateur = $id_utilisateur;
 
       return $this;
+  }
+
+  /**
+   * Get the value of nom
+   */ 
+  public function getNom()
+  {
+    return $this->nom;
+  }
+
+  /**
+   * Set the value of nom
+   *
+   * @return  self
+   */ 
+  public function setNom($nom)
+  {
+    $this->nom = $nom;
+
+    return $this;
   }
 }

@@ -12,8 +12,7 @@ require('../css/style-responsive.css');
 require('../css/table-responsive.css');
 require('../css/to-do.css');
 require('../css/zabuto_calendar.css');
-require('bootstrap');
-// Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
-// import $ from 'jquery';
 
+// JS
+require('./accueil.js');
 console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
