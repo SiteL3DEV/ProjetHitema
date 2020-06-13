@@ -1,9 +1,6 @@
 <?php
-// src/Controller/AccueilController.php
 
 namespace App\Controller;
-
-use App\Entity\Avis;
 use Twig\Environment;
 use App\Entity\Annonce;
 use JMS\Serializer\SerializerInterface;
