@@ -17,6 +17,7 @@ security:
             anonymous: true
             logout:
                 path: security_logout
+                target: /login
             guard:
                 authenticators:
                     - App\Security\FormLoginAuthenticator
