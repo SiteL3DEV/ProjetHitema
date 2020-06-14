@@ -14,5 +14,4 @@ require('../css/to-do.css');
 require('../css/zabuto_calendar.css');
 
 // JS
-require('./accueil.js');
 console.log('Hello Webpack Encore! Edit me in assets/js/app.js');

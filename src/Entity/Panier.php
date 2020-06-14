@@ -18,9 +18,31 @@ class Panier
  */
   private $id_produit;
   /**
- * @ORM\Column(type="date")
+ * @ORM\Column(type="integer")
  */
   private $id_utilisateur;
+
+
+
+  /**
+   * Get the value of id_utilisateur
+   */ 
+  public function getId_utilisateur()
+  {
+    return $this->id_utilisateur;
+  }
+
+  /**
+   * Set the value of id_utilisateur
+   *
+   * @return  self
+   */ 
+  public function setId_utilisateur($id_utilisateur)
+  {
+    $this->id_utilisateur = $id_utilisateur;
+
+    return $this;
+  }
 
   /**
    * Get the value of id_produit
@@ -43,51 +65,10 @@ class Panier
   }
 
   /**
-   * Get the value of id_utilisateur
+   * Get the value of id
    */ 
-  public function getId_utilisateur()
+  public function getId()
   {
-    return $this->id_utilisateur;
-  }
-
-  /**
-   * Set the value of id_utilisateur
-   *
-   * @return  self
-   */ 
-  public function setId_utilisateur($id_utilisateur)
-  {
-    $this->id_utilisateur = $id_utilisateur;
-
-    return $this;
-  }
-
-  public function getId(): ?int
-  {
-      return $this->id;
-  }
-
-  public function getIdProduit(): ?int
-  {
-      return $this->id_produit;
-  }
-
-  public function setIdProduit(int $id_produit): self
-  {
-      $this->id_produit = $id_produit;
-
-      return $this;
-  }
-
-  public function getIdUtilisateur(): ?\DateTimeInterface
-  {
-      return $this->id_utilisateur;
-  }
-
-  public function setIdUtilisateur(\DateTimeInterface $id_utilisateur): self
-  {
-      $this->id_utilisateur = $id_utilisateur;
-
-      return $this;
+    return $this->id;
   }
 }
