@@ -60,8 +60,8 @@
           $.each(allAnnonces, function( index, value ) {  
               html +=`<li class="row">
                         <div class="col-md-9 pr-0">
-                          <a href="../detailannonce/` + value['annonce']['id'] + `">
-                            <span class="photo"><img alt="avatar" src="/ProjetHitema/public/build/img/annonces/` + value['annonce']['image'] + `"></span>
+                          <a href="/ProjetHitema/public/index.php/detailannonce/` + value['annonce']['id'] + `">
+                            <span class="photo"><img alt="avatar" src="/ProjetHitema/public/imgajout/annonces/` + value['annonce']['image'] + `"></span>
                             <span class="subject">
                                 <span class="nom ml-1">` + value['annonce']['nom'] + `</span>
                             </span>

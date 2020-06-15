@@ -92,27 +92,26 @@ class AnnonceController extends AbstractController
                 // Move the file to the directory where brochures are stored
                 try {
                     $file->move(
-                        '/ProjetHitema/public/img/annonces',
+                        'imgajout/annonces',
                         $newFilename
                     );
+                    $annonce->setImage($newFilename);
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($annonce);
+                    $em->flush();
+      
+                    $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+      
+                    // On redirige vers la page de visualisation de l'annonce nouvellement créée
+                    return $this->redirectToRoute('oc_deposer_annonce', array('id' => $annonce->getId()));
                 } catch (FileException $e) {
-                    // ... handle exception if something happens during file upload
-                }
+                    var_dump($e);
+                    return new Response('error');
+                }               
 
-                // updates the 'brochureFilename' property to store the PDF file name
-                // instead of its contents
-                
-              $annonce->setImage($newFilename);
             }
 
-              $em = $this->getDoctrine()->getManager();
-              $em->persist($annonce);
-              $em->flush();
 
-              $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
-
-              // On redirige vers la page de visualisation de l'annonce nouvellement créée
-              return $this->redirectToRoute('oc_deposer_annonce', array('id' => $annonce->getId()));
           }
       }
 
