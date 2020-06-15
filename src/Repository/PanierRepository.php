@@ -22,29 +22,15 @@ class PanierRepository extends ServiceEntityRepository
     // /**
     //  * @return Panier[] Returns an array of Panier objects
     //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Panier
+    public function findAllPanierAnnonce()
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $query =  $this->getEntityManager()->createQuery(
+            'SELECT p, a
+            FROM App\Entity\Panier p
+            INNER JOIN p.annonce a'
+        );
+
+        return $query->getResult();
     }
-    */
 }

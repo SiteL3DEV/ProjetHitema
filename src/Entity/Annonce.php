@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Entity;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AnnonceRepository")
@@ -37,8 +39,10 @@ class Annonce
  * @ORM\Column(type="string", length=60)
  */
   private $categorie;
-  /**
- * @ORM\Column(type="string", length=200)
+/**
+ * @ORM\Column(type="string")
+ * @Assert\NotBlank(message="Upload your image")
+ * @Assert\File(mimeTypes={ "image/png", "image/jpeg" })
  */
   private $image;
   /**

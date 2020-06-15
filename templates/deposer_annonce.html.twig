@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Dashboard">
+    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+    <title>Entraide - Déposer une annonce</title>
+    {% include 'header.html.twig' %}
+</head>
+<html lang="en">
+<body>
+<section id="container">
+    <!--Barre d'en haut-->
+    {% include 'top_bar.html.twig' %}
+    <!--Menu de gauche-->
+    {% include 'side_menu.html.twig' %}
+    <!--Formulaire dépôt annonce-->
+    <body>
+    <section id="main-content">
+        <section class="wrapperannonce">
+            <body class="main-chart">
+
+                <div id="create">
+                    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+                    {{ form_errors(form) }}
+                    <div class="form-group row">
+                        {{ form_label(form.nom, "Nom du produit", {'label_attr': {'class': 'col-md-2 control-label'}}) }}
+                        {{ form_errors(form.nom) }}
+
+                        <div class="col-md-8">
+                            {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        {{ form_label(form.tarif, "Tarif", {'label_attr': {'class': 'col-md-2 control-label'}}) }}
+                        {{ form_errors(form.tarif) }}
+                        <div class="col-md-8">
+                            {{ form_widget(form.tarif, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        {{ form_label(form.description, "Description", {'label_attr': {'class': 'col-md-2 control-label'}}) }}
+                        {{ form_errors(form.description) }}
+                        <div class="col-md-10">
+                            {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        {{ form_label(form.adresse, "Adresse", {'label_attr': {'class': 'col-md-2 control-label'}}) }}
+                        {{ form_errors(form.adresse) }}
+                        <div class="col-md-8">
+                            {{ form_widget(form.adresse, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        {{ form_label(form.categorie, "Catégorie", {'label_attr': {'class': 'col-md-2 control-label'}}) }}
+                        {{ form_errors(form.categorie) }}
+                        <div class="col-md-8">
+                            {{ form_widget(form.categorie, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        {{ form_label(form.image, "Image", {'label_attr': {'class': 'col-md-2 control-label'}}) }}
+                        {{ form_errors(form.image) }}
+                        <div class="col-md-8">
+                            {{ form_widget(form.image, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        {{ form_label(form.date, "Date", {'label_attr': {'class': 'col-md-2 control-label'}}) }}
+                        {{ form_errors(form.date) }}
+                        <div class="col-md-8">
+                            {{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+
+                    {{ form_widget(form.Enregistrer, {'attr': {'class': 'btn btn-primary'}}) }}
+                    {{ form_rest(form) }}
+                    {{ form_end(form) }}
+                </div>
+                <script>
+                    $.backstretch("{{ asset('build/img/login-bg.jpg')}}", {
+                        speed: 500
+                    });
+                </script>
+            </body>
+              </div>
+            </section>
+        </section>
+    </section>
+</body>
+</html>

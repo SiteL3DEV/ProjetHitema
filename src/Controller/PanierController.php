@@ -13,18 +13,34 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class PanierController extends AbstractController
 {
   /**
-   * @Route("/ajoutpanier/{idproduit}", name="oc_ajout_panier")
+   * @Route("/ajoutpanier/{idannonce}", name="oc_ajout_panier")
    */
-  public function ajouterPanier(int $idproduit, SerializerInterface $serializer)
+  public function ajouterPanier(int $idannonce, SerializerInterface $serializer)
   {
     $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
     /** @var \App\Entity\Utilisateurs $user */
     $user = $this->getUser();
     $panier = new Panier();
-    $panier->setId_produit($idproduit);
-    $panier->setId_utilisateur($user->getId());
     $em = $this->getDoctrine()->getManager();
+    $annonce = $em->getRepository(Annonce::class)->findOneBy(array('id' => $idannonce));
+    $panier->setAnnonce($annonce);
+    $panier->setId_utilisateur($user->getId());
     $em->persist($panier);
+    $em->flush();
+    return new Response($panier->getId());
+  }
+
+  /**
+   * @Route("/supprimepanier/{idproduit}", name="oc_supprime_panier")
+   */
+  public function supprimerPanier(int $idproduit, SerializerInterface $serializer)
+  {
+    $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+    /** @var \App\Entity\Utilisateurs $user */
+    $user = $this->getUser();
+    $em = $this->getDoctrine()->getManager();
+    $panier = $em->getRepository(Panier::class)->findOneBy(array('id' => $idproduit));
+    $em->remove($panier);
     $em->flush();
     return new Response($panier->getId());
   }
@@ -39,11 +55,8 @@ class PanierController extends AbstractController
     $user = $this->getUser();
     $em = $this->getDoctrine()->getManager();
     $panier = $em->getRepository(Panier::class)->findAll();
-    $annonces = [];
-    foreach($panier as $onePanier){
-        array_push($annonces, $em->getRepository(Annonce::class)->findOneBy(array('id' => $onePanier->getId_produit())));
-    }
-    $response = $serializer->serialize($annonces,'json');
+    $panierannonces = $em->getRepository(Panier::class)->findAllPanierAnnonce();
+    $response = $serializer->serialize($panierannonces,'json');
     return new Response($response);
   }
 

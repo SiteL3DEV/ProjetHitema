@@ -14,9 +14,10 @@ class Panier
  */
   private $id;
   /**
- * @ORM\Column(type="integer")
- */
-  private $id_produit;
+   * @ORM\ManyToOne(targetEntity="Annonce")
+   * @ORM\JoinColumn(name="annonce_id", referencedColumnName="id")
+   */
+  private $annonce;
   /**
  * @ORM\Column(type="integer")
  */
@@ -45,30 +46,30 @@ class Panier
   }
 
   /**
-   * Get the value of id_produit
-   */ 
-  public function getId_produit()
-  {
-    return $this->id_produit;
-  }
-
-  /**
-   * Set the value of id_produit
-   *
-   * @return  self
-   */ 
-  public function setId_produit($id_produit)
-  {
-    $this->id_produit = $id_produit;
-
-    return $this;
-  }
-
-  /**
    * Get the value of id
    */ 
   public function getId()
   {
     return $this->id;
+  }
+
+  /**
+   * Get the value of annonce
+   */ 
+  public function getAnnonce()
+  {
+    return $this->annonce;
+  }
+
+  /**
+   * Set the value of annonce
+   *
+   * @return  self
+   */ 
+  public function setAnnonce($annonce)
+  {
+    $this->annonce = $annonce;
+
+    return $this;
   }
 }

@@ -2,7 +2,7 @@
     <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
   </div>
   <!--logo start-->
-  <a href="index.html" class="logo">
+  <a href="{{ path('oc_accueil_index') }}" class="logo">
     <b>DASH<span>IO</span>
     </b>
   </a>
@@ -13,7 +13,7 @@
     <ul class="nav top-menu">
       <!-- inbox dropdown start-->
       <li id="header_inbox_bar" class="dropdown">
-        <a data-toggle="dropdown" class="dropdown-toggle mr-0">
+        <a style="cursor:pointer;" data-toggle="dropdown" class="dropdown-toggle mr-0">
           <i class="fa fa-shopping-basket"></i>
           <span id="nbpanier" class="badge bg-theme"></span>
         </a>
@@ -41,6 +41,12 @@
               afficherPanier();
             });
       });
+      $('#panier').on('click', '#deletepanier',function(){
+          const idannonce = $(this).data('idpanier');
+          $.get("/ProjetHitema/public/index.php/supprimepanier/" + idannonce, function() {
+              afficherPanier();
+            });
+      });
     });
 
     function afficherPanier(){
@@ -51,23 +57,27 @@
                           <li>
                           <p class="green">Vous avez ` + allAnnonces.length + ` articles</p>
                           </li>`;
-          $.each(allAnnonces, function( index, value ) {
-              html +=`<li>
-                          <a href="index.html#">
-                          <span class="photo"><img alt="avatar" src="/ProjetHitema/public/build/img/annonces/` + value['image'] + `"></span>
-                          <span class="subject">
-                              <span class="from">` + value['nom'] + `</span>
-                              <i class="fa fa-trash"></i>
-                          </span>
-                          <span class="message">
-                              Prix : ` + value['tarif'] + ` €
-                          </span>
+          $.each(allAnnonces, function( index, value ) {  
+              html +=`<li class="row">
+                        <div class="col-md-9 pr-0">
+                          <a href="../detailannonce/` + value['annonce']['id'] + `">
+                            <span class="photo"><img alt="avatar" src="/ProjetHitema/public/build/img/annonces/` + value['annonce']['image'] + `"></span>
+                            <span class="subject">
+                                <span class="nom ml-1">` + value['annonce']['nom'] + `</span>
+                            </span>
+                            <span class="ml-1 prix">
+                                Prix : ` + value['annonce']['tarif'] + ` €
+                            </span>
                           </a>
+                        </div>
+                        <div class="col-md-1">
+                          <i id="deletepanier" data-idpanier="` + value['id'] + `" style="font-size:18px;color:red;cursor:pointer" class="fa fa-trash mt-3"></i>
+                        </div>
                       </li>`;
           });
 
           html += `<li>
-                      <a href="#">Voir le panier</a>
+                      <center><a href="#">Voir le panier</a></center>
                   </li>`;
           $('#panier').html(html);   
         });
