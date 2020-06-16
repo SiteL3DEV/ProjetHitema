@@ -23,13 +23,15 @@ class PanierRepository extends ServiceEntityRepository
     //  * @return Panier[] Returns an array of Panier objects
     //  */
 
-    public function findAllPanierAnnonce()
+    public function findAllPanierAnnonce($id_user)
     {
         $query =  $this->getEntityManager()->createQuery(
             'SELECT p, a
             FROM App\Entity\Panier p
-            INNER JOIN p.annonce a'
-        );
+            INNER JOIN p.annonce a
+            WHERE p.id_utilisateur = :id'
+        )
+        ->setParameter('id', $id_user);;
 
         return $query->getResult();
     }

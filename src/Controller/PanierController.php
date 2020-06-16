@@ -55,9 +55,32 @@ class PanierController extends AbstractController
     $user = $this->getUser();
     $em = $this->getDoctrine()->getManager();
     $panier = $em->getRepository(Panier::class)->findAll();
-    $panierannonces = $em->getRepository(Panier::class)->findAllPanierAnnonce();
+    $panierannonces = $em->getRepository(Panier::class)->findAllPanierAnnonce($user->getId());
     $response = $serializer->serialize($panierannonces,'json');
     return new Response($response);
   }
+
+  /**
+   * @Route("/panier", name="oc_panier")
+   */
+  public function panier(SerializerInterface $serializer, Environment $twig)
+  {
+    $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+    /** @var \App\Entity\Utilisateurs $user **/
+    $user = $this->getUser();
+    if($user){
+        $name = $user->getNom().' '.$user->getPrenom();
+        $btnLogInOut = 'Se déconnecter';
+    }
+    $em = $this->getDoctrine()->getManager();
+    $panier = $em->getRepository(Panier::class)->findAllPanierAnnonce($user->getId());
+    $content = $twig->render('panier.html.twig', [
+        'loginout' => $btnLogInOut,
+        'name' => $name,
+        'panier' => $panier
+    ]);
+    return new Response($content);
+  }
+
 
 }
