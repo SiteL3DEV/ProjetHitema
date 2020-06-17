@@ -429,6 +429,13 @@ ul.sidebar-menu li a.active i {
     margin-left: 15px;
 }
 
+.profil1 {
+    display: inline-block;
+    height:auto;
+    margin-right: 50px;
+    background-color: white
+}
+
 a.logo {
     font-size: 24px;
     color: #f2f2f2;

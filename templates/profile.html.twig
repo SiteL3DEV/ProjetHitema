@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="Dashboard">
+  <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+  <title>Dashio - Bootstrap Admin Template</title>
+  {% include 'header.html.twig' %}
+</head>
+<html lang="en">
+
+<body>
+<section id="container">
+    <!--Barre d'en haut-->
+    {% include 'top_bar.html.twig' %}
+    <!--Menu de gauche-->
+    {% include 'side_menu.html.twig' %}
+    <!--Barre de recherche accueil-->
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row">
+                <div class="main-chart w-100">
+                <div style="text-align: center">
+                    <h1><center>Mon compte</center></h1>
+                    <div style="padding-top: 5%;width: 1000px;margin:0 auto;">
+                    
+                <a href="#">
+                  <div class="profil1">
+                      <table style="width: 400px;height: 100px;" class="btn btn-outline-success my-2 my-sm-0">
+                          <tr>
+                              <td>
+                                  <span style=""><img width="100" src="{{ asset('build/img/profil/commande.png') }}"></span>
+                              </td>
+
+                              <td width="400">
+                                  <span style="font-weight: bold">Vos commandes</span><br>
+                                  <span style="">Louer ou acheter à nouveau</span>
+                              </td>
+                          </tr>
+                      </table>
+                  </div>
+                </a>
+
+                <a href="{{ path('oc_profiledition') }}"><div class="profil1">
+                    <table style="width: 400px;height: 100px;" class="btn btn-outline-success my-2 my-sm-0">
+                        <tr>
+                            <td>
+                                <span style=""><img width="100" src="{{ asset('build/img/profil/securite.png') }}"></span>
+                            </td>
+
+                            <td width="400">
+                                <span style="font-weight: bold">Paramètres de sécurité</span><br>
+                                <span style="">Modifier vos informations <br>personnelles</span>
+                            </td>
+                        </tr>
+                    </table>
+                    </div></a>
+                <br><br>
+
+                <a href="#"><div class="profil1">
+                    <table style="width: 400px;height: 100px;"class="btn btn-outline-success my-2 my-sm-0">
+                        <tr>
+                            <td>
+                                <span style=""><img width="100" src="{{ asset('build/img/profil/adresse.png') }}"></span>
+                            </td>
+
+                            <td width="400">
+                                <span style="font-weight: bold">Adresses</span><br>
+                                <span style="">Modifier les adresses de livraison<br> des commandes</span>
+                            </td>
+                        </tr>
+                    </table>
+                    </div></a>
+
+                    <a href="#"><div class="profil1">
+                    <table style="width: 400px;height: 100px;"class="btn btn-outline-success my-2 my-sm-0">
+                        <tr>
+                            <td>
+                                <span style=""><img width="100" src="{{ asset('build/img/profil/paiement.png') }}"></span>
+                            </td>
+
+                            <td width="400">
+                                <span style="font-weight: bold">Vos paiements</span><br>
+                                <span style="">Gérer les modes de paiements</span>
+                            </td>
+                        </tr>
+                    </table>
+              </div></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      </section>
+  </section>
+</section>
+
+
+
+      <script type="text/javascript">
+        $(document).ready(function () {
+          var unique_id = $.gritter.add({
+            // (string | mandatory) the heading of the notification
+            title: 'Welcome to Dashio!',
+            // (string | mandatory) the text inside the notification
+
+            // (string | optional) the image to display on the left
+            image: '{{ asset("build/img/ui-sam.jpg") }}',
+            // (bool | optional) if you want it to fade out on its own or just sit there
+            sticky: false,
+            // (int | optional) the time you want it to be alive for before fading out
+            time: 8000,
+            // (string | optional) the class name you want to apply to that specific message
+            class_name: 'my-sticky-class'
+          });
+
+          return false;
+        });
+      </script>
+      <script type="application/javascript">
+        $(document).ready(function () {
+          $("#date-popover").popover({html: true, trigger: "manual"});
+          $("#date-popover").hide();
+          $("#date-popover").click(function (e) {
+            $(this).hide();
+          });
+
+          $("#my-calendar").zabuto_calendar({
+            action: function () {
+              return myDateFunction(this.id, false);
+            },
+            action_nav: function () {
+              return myNavFunction(this.id);
+            },
+            ajax: {
+              url: "show_data.php?action=1",
+              modal: true
+            },
+            legend: [
+              {
+                type: "text",
+                label: "Special event",
+                badge: "00"
+              }, {
+                type: "block",
+                label: "Regular event"
+              }
+            ]
+          });
+        });
+
+        function myNavFunction(id) {
+          $("#date-popover").hide();
+          var nav = $("#" + id).data("navigation");
+          var to = $("#" + id).data("to");
+          console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
+        }
+      </script>
+</body>
+
+</html>

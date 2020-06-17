@@ -64,4 +64,60 @@ class UtilisateursController extends AbstractController
             ]
         );
     }
+    
+    /**
+     * @Route("/profiledition", name="oc_profiledition")
+     */
+    public function editUser(Request $request, UserPasswordEncoderInterface $encoder)
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        /** @var \App\Entity\Utilisateurs $user */
+        $user = $this->getUser();
+
+        $em = $this->getDoctrine()->getManager();
+
+        $form = $this->get('form.factory')->createBuilder(FormType::class, $user)
+            ->add('username', TextType::class)
+            ->add('password', TextType::class)
+            ->add('nom',      TextType::class)
+            ->add('prenom',   TextType::class)
+            ->add('adresse',  TextType::class)
+            ->add('mail',     TextType::class)
+            ->add('type',     TextType::class)
+            ->add('Enregistrer',     SubmitType::class)
+            ->getForm()
+        ;
+
+        if ($request->getMethod() === 'POST')
+        {
+            $form->handleRequest($request);
+
+            if ($form->isValid()) {
+                $encoded = $encoder->encodePassword(
+                    $user, $form['password']->getData());
+                $user->setPassword($encoded);
+                $em->flush();
+
+                return $this->redirect($this->generateUrl('oc_profil'));
+            }
+
+            $em->refresh($user); // Add this line
+        }
+
+        if($user){
+            $name = $user->getNom().' '.$user->getPrenom();
+            $email = $user->getMail();
+            $mdp = $user->getPassword();
+            $btnLogInOut = 'Se déconnecter';
+        }
+
+        return $this->render('profileediteur.html.twig', array(
+            'form'   => $form->createView(),
+            'loginout' => $btnLogInOut,
+            'name' => $name,
+            'email' => $email,
+            'mdp' => $mdp,
+        ));
+
+    }
 }

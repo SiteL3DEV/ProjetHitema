@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Dashboard">
+    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+    <title>Dashio - Bootstrap Admin Template</title>
+    {% include 'header.html.twig' %}
+</head>
+<html lang="en">
+<body>
+<section id="container">
+    <!--Barre d'en haut-->
+    {% include 'top_bar.html.twig' %}
+    <!--Menu de gauche-->
+    {% include 'side_menu.html.twig' %}
+    <!--Barre de recherche accueil-->
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row">
+                <div class="main-chart w-100">
+                    <h1><center>Modifier mon compte</center></h1>
+                    <div style="padding-top: 5%;width: 100%;margin:0 auto;">
+                            {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+                            {{ form_errors(form) }}
+                            <div class="form-group row">
+                                {{ form_label(form.username, "Identifiant", {'label_attr': {'class': 'col-md-2 control-label'}}) }}
+                                {{ form_errors(form.username) }}
+
+                                <div class="col-md-8">
+                                    {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                {{ form_label(form.password, "Mot de passe", {'label_attr': {'class': 'col-md-2 control-label'}}) }}
+                                {{ form_errors(form.password) }}
+                                <div class="col-md-8">
+                                    <input type="password" {{ form_widget(form.password, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+                        <!--<div class="form-group row">
+                            {{ form_label(form.password, "Mot de passe", {'label_attr': {'class': 'col-md-2 control-label'}}) }}
+                            {{ form_errors(form.password) }}
+                            <div class="col-md-8">
+                                <input placeholder="Mot de passe" type="password" required="required" class="form-control" value="form.password"/>
+                            </div>
+                        </div>-->
+                            <div class="form-group row">
+                                {{ form_label(form.nom, "Nom", {'label_attr': {'class': 'col-md-2 control-label'}}) }}
+                                {{ form_errors(form.nom) }}
+                                <div class="col-md-8">
+                                    {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                {{ form_label(form.prenom, "Prénom", {'label_attr': {'class': 'col-md-2 control-label'}}) }}
+                                {{ form_errors(form.prenom) }}
+                                <div class="col-md-8">
+                                    {{ form_widget(form.prenom, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                {{ form_label(form.adresse, "Adresse", {'label_attr': {'class': 'col-md-2 control-label'}}) }}
+                                {{ form_errors(form.adresse) }}
+                                <div class="col-md-8">
+                                    {{ form_widget(form.adresse, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                {{ form_label(form.mail, "Mail", {'label_attr': {'class': 'col-md-2 control-label'}}) }}
+                                {{ form_errors(form.mail) }}
+                                <div class="col-md-8">
+                                    {{ form_widget(form.mail, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                {{ form_label(form.type, "Type", {'label_attr': {'class': 'col-md-2 control-label'}}) }}
+                                {{ form_errors(form.type) }}
+                                <div class="col-md-8">
+                                    {{ form_widget(form.type, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+
+                            {{ form_widget(form.Enregistrer, {'attr': {'class': 'btn btn-primary'}}) }}
+                            {{ form_rest(form) }}
+                            {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+</section>
+</body>
+</html>

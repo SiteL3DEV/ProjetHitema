@@ -3,7 +3,7 @@
   </div>
   <!--logo start-->
   <a href="{{ path('oc_accueil_index') }}" class="logo">
-    <b>DASH<span>IO</span>
+    <b>ENTR<span>AIDE</span>
     </b>
   </a>
   <!--logo end-->
@@ -34,11 +34,14 @@
 
  <script>
     $(document).ready(function() {
+      $('.msg').hide();
       afficherPanier();
       $('#ajoutpanier').on('click', function(){
           const idannonce = $(this).data('idannonce');
           $.get("/ProjetHitema/public/index.php/ajoutpanier/" + idannonce, function() {
               afficherPanier();
+              	$('.msg').fadeIn('slow');
+			          $('.msg').delay(2000).fadeOut('slow');
             });
       });
       $('#panier').on('click', '#deletepanier',function(){
