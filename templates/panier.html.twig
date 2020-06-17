@@ -28,7 +28,7 @@
 										Votre panier est actuellement vide.
 									</div>-->
 									{% for onePanier in panier %}
-										<div class="mt-5 basket-item row i-basket-item basket-item" data-stockid="560285" data-cy="product-158511">
+										<div class="mt-5 basket-item row i-basket-item basket-item">
 											<div class="basket-item__image col-4 col-lg-2">
 												<img alt="Hand Plane Hydro Body Pro Surfer" src="{{ asset('imgajout/annonces/' ~ onePanier.annonce.image) }}" width="120" height="120">
 											</div>
@@ -44,32 +44,33 @@
 													</div>
 													<div class="col-md-6 col-lg-3">
 														<div class="cart-qty">
-															<a class="btn-quantite cart-qty__btn cart-qty__btn--down i-basket-change-quantity" data-qty-change="-1" data-stockid="560285" data-cy="decrease-quantity-btn" title="Decrease">-</a>
-															<input type="number" max="30" min="1" name="" class="p-0 cart-qty__input i-basket-quantity" data-cy="item-quantity" value="1" data-stockid="560285">
-															<a class="btn-quantite cart-qty__btn cart-qty__btn--up i-basket-change-quantity" data-qty-change="1" data-stockid="560285" data-cy="increase-quantity-btn" title="Increase">+</a>
+															<a data-panierid="{{onePanier.id}}" class="remove btn-quantite cart-qty__btn cart-qty__btn--down i-basket-change-quantity" title="Decrease">-</a>
+															<input type="number" max="30" min="1" name="" class="quantite{{onePanier.id}} p-0 cart-qty__input i-basket-quantity" value="{{onePanier.quantite}}">
+															<a data-panierid="{{onePanier.id}}" class="add btn-quantite cart-qty__btn cart-qty__btn--up i-basket-change-quantity" title="Increase">+</a>
 														</div>
 													</div>
 													<div class="col-md-6 col-lg-2">
 														<div class="price">
-															<h4 class="price--fullprice i-product-full-price">{{onePanier.annonce.tarif}}&nbsp;€</h4>
+															<h4 data-price="{{onePanier.annonce.tarif * onePanier.quantite}}" class="price--fullprice i-product-full-price price price{{onePanier.id}}">{{onePanier.annonce.tarif * onePanier.quantite}}&nbsp;€</h4>
 														</div>
 														<a class="basket-item__remove i-basket-remove" title="Remove From Basket">Retirer</a>
 													</div>
 												</div>
 											</div>
 										</div>
+										<input type="hidden" class="prixunitaire{{onePanier.id}}" value="{{onePanier.annonce.tarif}}">
 									{% endfor %}
 									
 								</div>
 								<div class="col-md-4 mt-5">
 									<section class="basket-summary m-0">
 										<p class="basket-summary__line">Sous-total
-											<span class="basket-summary__value i-basket-sub-total">90.00 €</span>
+											<span class="totalpanier basket-summary__value i-basket-sub-total"></span>
 										</p>
 										<p class="basket-summary__line">TVA
 											<span class="basket-summary__value i-basket-vat">16 €</span>
 										</p>
-										<h2 class="basket_summary__total">Coût total <span class="basket-summary__value i-basket-total" data-cy="basket-total">90.00 €</span>
+										<h2 class="basket_summary__total">Coût total <span class="totalpanier basket-summary__value i-basket-total" data-cy="basket-total"></span>
 										</h2>
 									</section>
 									<form class="promo-code mt-3" method="POST" action="#">
@@ -78,13 +79,12 @@
 										<input name="promocode" placeholder="Code Promo" type="text" class="input promo-code__input" data-cy="promo-code-field">
 										<button class="w-100 promo-code__btn btn btn--primary" data-cy="apply-promo-btn">
 											<span class="hidden-lg-up">Appliquer</span>
-											<img class="hidden-lg-down" src="https://www.surfdome.fr/svg/arrow.svg" alt="Appliquer" width="10">
 										</button>
-										<input type="hidden" name="_token" value="tb2GhG6tFFAIxVQbQlLPI1g1km64I7XHWE40i8jj"></form>
-									<a class="w-100 btn btn--primary centered i-checkout-button " href="https://www.surfdome.fr/checkout/account" title="Procédez au règlement final" data-cy="proceed-to-checkout-btn">Payer</a>
+									</form>
+									<a class="w-100 btn btn--primary centered i-checkout-button " href="#" title="Procédez au règlement final">Payer</a>
 									<br><br>
-									<center><a href="https://www.surfdome.fr">
-										<button class="btn btn--secondary centered" title="Poursuivre vos achats" data-cy="continue-shopping-btn">Poursuivre vos achats</button>
+									<center><a href="#">
+										<button class="btn btn--secondary centered" title="Poursuivre vos achats">Poursuivre vos achats</button>
 									</a></center>
 								</div>
 							</div>
@@ -92,6 +92,46 @@
 					</div>
 				</section>
 			</section>
-		</body>
+		</section>
+	<script>
+		$(document).ready(function(){
+			setTotal();
+			
+		});
+		$('.add').on('click', function(){
+				const idpanier = $(this).data('panierid');
+				$.get("ajoutquantitepanier/" + idpanier + "/ajout", function(data) {
+					if($('.quantite' + idpanier).val()<30){
+						$('.quantite' + idpanier).val(parseInt($('.quantite' + idpanier).val())+1);
+						let prix = parseInt($('.price' + idpanier).data('price')) + parseInt($('.prixunitaire' + idpanier).val());
+						$('.price' + idpanier).html( prix + " €");
+						$('.price' + idpanier).data('price', prix);
+						setTotal();
+					}
+				});
+			});
+			$('.remove').on('click', function(){
+				const idpanier = $(this).data('panierid');
+				$.get("ajoutquantitepanier/" + idpanier + "/suppr", function(data) {
+					if($('.quantite' + idpanier).val()>1){
+						$('.quantite' + idpanier).val(parseInt($('.quantite' + idpanier).val())-1);
+						let prix = parseInt($('.price' + idpanier).data('price')) - parseInt($('.prixunitaire' + idpanier).val());
+						$('.price' + idpanier).html( prix + " €");
+						$('.price' + idpanier).data('price', prix);
+						setTotal();
+					}
+				});
+			});
+
+		function setTotal(){
+			let total = 0;
+			$( ".price" ).each(function( index ) {
+				if($( this ).data('price') && $( this ).data('price') !== undefined)
+					total += $( this ).data('price');
+			});
+			$('.totalpanier').html(total + " €");
+		}
+
+	</script>
 	</body>
 </html>

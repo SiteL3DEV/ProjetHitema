@@ -22,6 +22,10 @@ class Panier
  * @ORM\Column(type="integer")
  */
   private $id_utilisateur;
+  /**
+ * @ORM\Column(type="integer")
+ */
+  private $quantite;
 
 
 
@@ -69,6 +73,26 @@ class Panier
   public function setAnnonce($annonce)
   {
     $this->annonce = $annonce;
+
+    return $this;
+  }
+
+  /**
+   * Get the value of quantite
+   */ 
+  public function getQuantite()
+  {
+    return $this->quantite;
+  }
+
+  /**
+   * Set the value of quantite
+   *
+   * @return  self
+   */ 
+  public function setQuantite($quantite)
+  {
+    $this->quantite = $quantite;
 
     return $this;
   }

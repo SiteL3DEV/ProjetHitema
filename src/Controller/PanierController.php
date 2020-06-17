@@ -12,6 +12,24 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PanierController extends AbstractController
 {
+
+  public function ajoutQuantite(int $idpanier, string $operation,SerializerInterface $serializer){
+    $panier = new Panier();
+    $em = $this->getDoctrine()->getManager();
+    $panier = $em->getRepository(Panier::class)->find($idpanier);
+
+    if (!$panier) {
+        throw $this->createNotFoundException(
+            'No product found for id '.$panier
+        );
+    }
+    if($operation == "ajout")
+      $panier->setQuantite($panier->getQuantite() + 1);
+    else if($operation == "suppr")
+      $panier->setQuantite($panier->getQuantite() - 1);
+    $em->flush();
+  }
+
   /**
    * @Route("/ajoutpanier/{idannonce}", name="oc_ajout_panier")
    */
@@ -23,11 +41,31 @@ class PanierController extends AbstractController
     $panier = new Panier();
     $em = $this->getDoctrine()->getManager();
     $annonce = $em->getRepository(Annonce::class)->findOneBy(array('id' => $idannonce));
-    $panier->setAnnonce($annonce);
-    $panier->setId_utilisateur($user->getId());
-    $em->persist($panier);
-    $em->flush();
-    return new Response($panier->getId());
+    $panierIfExist = $em->getRepository(Panier::class)->findOneBy(array('annonce' => $idannonce));
+    $panierid;
+    if(!$panierIfExist){
+      $panier->setAnnonce($annonce);
+      $panier->setId_utilisateur($user->getId());
+      $panier->setQuantite(1);
+      $em->persist($panier);
+      $em->flush();
+      $panierid = $panier->getId();
+    }else{
+      $panierid = $this->ajoutQuantite($panierIfExist->getId(), 'ajout', $serializer);
+    }
+    return new Response($panierid);
+  }
+
+  /**
+   * @Route("/ajoutquantitepanier/{idpanier}/{operation}", name="oc_ajout_quantitepanier")
+   */
+  public function ajouterQuantitePanier(int $idpanier, string $operation,SerializerInterface $serializer)
+  {
+    $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+    /** @var \App\Entity\Utilisateurs $user */
+    $user = $this->getUser();
+    $idpanier = $this->ajoutQuantite($idpanier, $operation, $serializer);
+    return new Response($idpanier);
   }
 
   /**
