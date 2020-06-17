@@ -21,86 +21,71 @@
 							<h1>
 								<center>Panier</center>
 							</h1>
-							<div class="row contentannonces w-75 mt-5 ml-auto mr-auto">
-								{% for onePanier in panier %}
-									<div class="col-md-4">
-										<div style="height:auto !important;" class="card">
-											<h3>{{onePanier.annonce.nom}}</h3>
-											<img style="width:200px; height:200px;" src="{{ asset('imgajout/annonces/' ~ onePanier.annonce.image) }}" class="card-img-top ml-auto mr-auto" alt="...">
-											<div class="card-body">
-												<p class="card-text">{{onePanier.annonce.description}}</p>
-												<center>
-													<a href="detailannonce/{{onePanier.annonce.id}}" class="btn btn-outline-success my-2 my-sm-0">Accéder au produit</a>
-												</center>
-											</div>
-										</div>
-									</div>
-								{% endfor %}
-							</div>
-							<div class="row">
+							<div class="row w-75 mt-5 ml-auto mr-auto">
 								<div class="col-md-8">
-									<div class="i-empty-basket hidden-xs-up" data-cy="empty-basket">
+									<!--<div class="i-empty-basket hidden-xs-up" data-cy="empty-basket">
 										<br>
 										Votre panier est actuellement vide.
-									</div>
-									<div class="basket-item row i-basket-item basket-item" data-stockid="560285" data-cy="product-158511">
-										<div class="basket-item__image col-4 col-lg-2" data-cy="product-image">
-											<img alt="Hand Plane Hydro Body Pro Surfer" srcset="https://internetfusion.imgix.net/567462.jpg?&amp;w=120&amp;h=120&amp;fit=fill&amp;fill=solid&amp;dpr=1 1x,
-												                https://internetfusion.imgix.net/567462.jpg?&amp;w=120&amp;h=120&amp;fit=fill&amp;fill=solid&amp;dpr=2 2x,
-												                https://internetfusion.imgix.net/567462.jpg?&amp;w=120&amp;h=120&amp;fit=fill&amp;fill=solid&amp;dpr=3 3x" src="https://internetfusion.imgix.net/567462.jpg??w=120&amp;h=120&amp;fit=fill&amp;fill=solid" width="120" height="120">
-										</div>
-										<div class="details col-8 col-lg-10">
-											<div class="row">
-												<div class="col-lg-7 col-md-12 basket-item__details">
-													<h2 class="basket-item__title">
-														<a href="https://www.surfdome.fr/Hand-Plane-Hydro-Body-Pro-Surfer/sd5080171.htm?colour=Blue" data-cy="product-name" title="Hand Plane Hydro Body Pro Surfer">Hand Plane Hydro Body Pro Surfer</a>
-													</h2>
-													<h3 class="basket-item__meta" data-cy="product-colour">
-														Blue</h3>
-													<h3 class="basket-item__meta" data-cy="product-size">Taille Unique</h3>
-												</div>
-												<div class="col-md-6 col-lg-3">
-													<div class="cart-qty">
-														<a class="cart-qty__btn cart-qty__btn--down i-basket-change-quantity" data-qty-change="-1" data-stockid="560285" data-cy="decrease-quantity-btn" title="Decrease">-</a>
-														<input type="number" max="30" min="1" name="" class="cart-qty__input i-basket-quantity" data-cy="item-quantity" readonly="" value="1" data-stockid="560285">
-														<a class="cart-qty__btn cart-qty__btn--up i-basket-change-quantity" data-qty-change="1" data-stockid="560285" data-cy="increase-quantity-btn" title="Increase">+</a>
+									</div>-->
+									{% for onePanier in panier %}
+										<div class="mt-5 basket-item row i-basket-item basket-item" data-stockid="560285" data-cy="product-158511">
+											<div class="basket-item__image col-4 col-lg-2">
+												<img alt="Hand Plane Hydro Body Pro Surfer" src="{{ asset('imgajout/annonces/' ~ onePanier.annonce.image) }}" width="120" height="120">
+											</div>
+											<div class="details col-8 col-lg-10">
+												<div class="row">
+													<div class="col-lg-7 col-md-12 basket-item__details">
+														<h2 class="basket-item__title">
+															<a href="detailannonce/{{onePanier.annonce.id}}" title="{{onePanier.annonce.nom}}">{{onePanier.annonce.nom}}</a>
+														</h2>
+														<h3 class="basket-item__meta">
+															Blue</h3>
+														<h3 class="basket-item__meta">Taille Unique</h3>
 													</div>
-												</div>
-												<div class="col-md-6 col-lg-2">
-													<div class="price">
-														<h4 class="price--fullprice i-product-full-price" data-cy="item-price">€35.00</h4>
+													<div class="col-md-6 col-lg-3">
+														<div class="cart-qty">
+															<a class="btn-quantite cart-qty__btn cart-qty__btn--down i-basket-change-quantity" data-qty-change="-1" data-stockid="560285" data-cy="decrease-quantity-btn" title="Decrease">-</a>
+															<input type="number" max="30" min="1" name="" class="p-0 cart-qty__input i-basket-quantity" data-cy="item-quantity" value="1" data-stockid="560285">
+															<a class="btn-quantite cart-qty__btn cart-qty__btn--up i-basket-change-quantity" data-qty-change="1" data-stockid="560285" data-cy="increase-quantity-btn" title="Increase">+</a>
+														</div>
 													</div>
-													<a class="basket-item__remove i-basket-remove" data-stockid="560285" data-cy="remove-item-btn" title="Remove From Basket">Retirer</a>
+													<div class="col-md-6 col-lg-2">
+														<div class="price">
+															<h4 class="price--fullprice i-product-full-price">{{onePanier.annonce.tarif}}&nbsp;€</h4>
+														</div>
+														<a class="basket-item__remove i-basket-remove" title="Remove From Basket">Retirer</a>
+													</div>
 												</div>
 											</div>
 										</div>
-									</div>
+									{% endfor %}
+									
 								</div>
-								<div class="col-md-4">
-									<section class="basket-summary">
+								<div class="col-md-4 mt-5">
+									<section class="basket-summary m-0">
 										<p class="basket-summary__line">Sous-total
-											<span class="basket-summary__value i-basket-sub-total">€35.00</span>
+											<span class="basket-summary__value i-basket-sub-total">90.00 €</span>
 										</p>
 										<p class="basket-summary__line">TVA
-											<span class="basket-summary__value i-basket-vat">€5.83</span>
+											<span class="basket-summary__value i-basket-vat">16 €</span>
 										</p>
-										<h2 class="basket_summary__total">Coût total<span class="basket-summary__value i-basket-total" data-cy="basket-total">€35.00</span>
+										<h2 class="basket_summary__total">Coût total <span class="basket-summary__value i-basket-total" data-cy="basket-total">90.00 €</span>
 										</h2>
 									</section>
-									<form class="promo-code " method="POST" action="https://www.surfdome.fr/order/promo/add">
+									<form class="promo-code mt-3" method="POST" action="#">
 										<h5 class="title--small promo-code__title">Ajouter un code promotionnel</h5>
 										<p class="promo-code__intro">Un code par commande</p>
 										<input name="promocode" placeholder="Code Promo" type="text" class="input promo-code__input" data-cy="promo-code-field">
-										<button class="promo-code__btn btn btn--primary" data-cy="apply-promo-btn">
+										<button class="w-100 promo-code__btn btn btn--primary" data-cy="apply-promo-btn">
 											<span class="hidden-lg-up">Appliquer</span>
 											<img class="hidden-lg-down" src="https://www.surfdome.fr/svg/arrow.svg" alt="Appliquer" width="10">
 										</button>
 										<input type="hidden" name="_token" value="tb2GhG6tFFAIxVQbQlLPI1g1km64I7XHWE40i8jj"></form>
-									<a class="btn btn--primary centered i-checkout-button " href="https://www.surfdome.fr/checkout/account" title="Procédez au règlement final" data-cy="proceed-to-checkout-btn">Procédez au règlement final</a>
-									<br>
-									<a href="https://www.surfdome.fr">
+									<a class="w-100 btn btn--primary centered i-checkout-button " href="https://www.surfdome.fr/checkout/account" title="Procédez au règlement final" data-cy="proceed-to-checkout-btn">Payer</a>
+									<br><br>
+									<center><a href="https://www.surfdome.fr">
 										<button class="btn btn--secondary centered" title="Poursuivre vos achats" data-cy="continue-shopping-btn">Poursuivre vos achats</button>
-									</a>
+									</a></center>
 								</div>
 							</div>
 						</div>
