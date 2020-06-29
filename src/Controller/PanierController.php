@@ -6,7 +6,9 @@ use Twig\Environment;
 use App\Entity\Panier;
 use App\Entity\Annonce;
 use JMS\Serializer\SerializerInterface;
+use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -119,6 +121,57 @@ class PanierController extends AbstractController
     ]);
     return new Response($content);
   }
+  /**
+   * @Route("/create-order", name="oc_paypal")
+   */
+  public function paypal(Request $req)
+  {
+    $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+    /** @var \App\Entity\Utilisateurs $user **/
+    $user = $this->getUser();
 
+    $accesstoken = $this->authPaypal();
+    /*if($user){
+        $name = $user->getNom().' '.$user->getPrenom();
+        $btnLogInOut = 'Se déconnecter';
+    }
+    $em = $this->getDoctrine()->getManager();
+    $panier = $em->getRepository(Panier::class)->findAllPanierAnnonce($user->getId());
+    $content = $twig->render('panier.html.twig', [
+        'loginout' => $btnLogInOut,
+        'name' => $name,
+        'panier' => $panier
+    ]);
+    return new Response($content);*/
+    /*$client = HttpClient::create(['headers' => [
+        'User-Agent' => 'My Fancy App',
+    ]]);
+    
+    // this header is only included in this request and overrides the value
+    // of the same header if defined globally by the HTTP client
+    $response = $client->request('POST', 'https://api.sandbox.paypal.com/v2/checkout/orders', [
+        'headers' => [
+            'Content-Type' => 'application/json',
+            'Authorization' => 'Bearer Access-Token',
+            'PayPal-Partner-Attribution-Id' => 'BN-Code'
+        ],
+    ]);*/
+  }
+
+  private function authPaypal(){
+    $response = HttpClient::create()->request('POST', 'https://api.sandbox.paypal.com/v1/oauth2/token', [
+      'headers' => [
+          'Content-Type' => 'application/json'
+      ],
+     'auth_basic' => 
+       ['AUdA5pbFjfPf4I_Ml5chml778ytGbkWVJe2epcQh_I4QUc_PmIwgZGW5upuIGECTpV7fwdjn9waUvuHm', 'EIL2xUhQd3kOkJf9GIb-zZByl7Fv0l790gNw8WIA1PUIorY9rkeIQ4v4Myxq6KhBnoqJ16VS0htFiqi4']
+     ,
+     'body' => [
+      'grant_type' => 'client_credentials'
+     ]
+
+   ]);
+    return(json_decode($response->getContent())->access_token);
+  }
 
 }

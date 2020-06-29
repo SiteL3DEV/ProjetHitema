@@ -85,7 +85,8 @@
 									<br><br>
 									<center><a href="#">
 										<button class="btn btn--secondary centered" title="Poursuivre vos achats">Poursuivre vos achats</button>
-									</a></center>
+									</a></center><br>
+									<div id="paypal-button-container"></div>
 								</div>
 							</div>
 						</div>
@@ -93,12 +94,32 @@
 				</section>
 			</section>
 		</section>
-	<script>
-		$(document).ready(function(){
-			setTotal();
-			
-		});
-		$('.add').on('click', function(){
+		<script>
+			$(document).ready(function(){
+				setTotal();
+				paypal.Buttons({
+					createOrder: function (data, actions) {
+					return fetch('create-order', {
+						method: 'POST'
+					}).then(function(res) {
+						return res.json();
+					}).then(function(data) {
+						return data.id;
+					});
+					},
+					onApprove: function (data, actions) {
+					return fetch('capture-order/' + data.orderID, {
+						method: 'POST'
+					}).then(function(res) {
+						if (!res.ok) {
+						alert('Something went wrong');
+						}
+					});
+					}
+				}).render('#paypal-button-container');
+			});
+
+			$('.add').on('click', function(){
 				const idpanier = $(this).data('panierid');
 				$.get("ajoutquantitepanier/" + idpanier + "/ajout", function(data) {
 					if($('.quantite' + idpanier).val()<30){
@@ -123,15 +144,15 @@
 				});
 			});
 
-		function setTotal(){
-			let total = 0;
-			$( ".price" ).each(function( index ) {
-				if($( this ).data('price') && $( this ).data('price') !== undefined)
-					total += $( this ).data('price');
-			});
-			$('.totalpanier').html(total + " €");
-		}
+			function setTotal(){
+				let total = 0;
+				$( ".price" ).each(function( index ) {
+					if($( this ).data('price') && $( this ).data('price') !== undefined)
+						total += $( this ).data('price');
+				});
+				$('.totalpanier').html(total + " €");
+			}
 
-	</script>
+		</script>
 	</body>
 </html>
