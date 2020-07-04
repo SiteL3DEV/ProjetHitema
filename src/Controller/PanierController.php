@@ -124,39 +124,53 @@ class PanierController extends AbstractController
   /**
    * @Route("/create-order", name="oc_paypal")
    */
-  public function paypal(Request $req)
+  public function paypalCreate(Request $req)
   {
     $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
     /** @var \App\Entity\Utilisateurs $user **/
     $user = $this->getUser();
 
     $accesstoken = $this->authPaypal();
-    /*if($user){
-        $name = $user->getNom().' '.$user->getPrenom();
-        $btnLogInOut = 'Se déconnecter';
-    }
-    $em = $this->getDoctrine()->getManager();
-    $panier = $em->getRepository(Panier::class)->findAllPanierAnnonce($user->getId());
-    $content = $twig->render('panier.html.twig', [
-        'loginout' => $btnLogInOut,
-        'name' => $name,
-        'panier' => $panier
-    ]);
-    return new Response($content);*/
-    /*$client = HttpClient::create(['headers' => [
-        'User-Agent' => 'My Fancy App',
-    ]]);
-    
-    // this header is only included in this request and overrides the value
-    // of the same header if defined globally by the HTTP client
-    $response = $client->request('POST', 'https://api.sandbox.paypal.com/v2/checkout/orders', [
+    //var_dump($accesstoken);
+    $response = HttpClient::create()->request('POST', 'https://api.sandbox.paypal.com/v2/checkout/orders', [
         'headers' => [
-            'Content-Type' => 'application/json',
-            'Authorization' => 'Bearer Access-Token',
-            'PayPal-Partner-Attribution-Id' => 'BN-Code'
+            'Content-Type' => 'application/json'
         ],
-    ]);*/
+        'auth_bearer' => $accesstoken,
+        'body' => '{
+          "intent": "CAPTURE",
+          "purchase_units": [
+            {
+              "amount": {
+                "currency_code": "EUR",
+                "value": "10.00"
+              }
+            }
+          ]
+        }'
+    ]);
+    return new Response($response->getContent());
   }
+
+  /**
+   * @Route("/capture-order/{orderid}", name="oc_paypal_capture")
+   */
+  public function paypalCapture(string $orderid, Request $req)
+  {
+    $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+    /** @var \App\Entity\Utilisateurs $user **/
+    $user = $this->getUser();
+
+    $accesstoken = $this->authPaypal();
+    $response = HttpClient::create()->request('POST', 'https://api.sandbox.paypal.com/v2/checkout/orders/'.$orderid.'/capture', [
+        'headers' => [
+            'Content-Type' => 'application/json'
+        ],
+        'auth_bearer' => $accesstoken,
+    ]);
+    return new Response($response->getContent());
+  }
+
 
   private function authPaypal(){
     $response = HttpClient::create()->request('POST', 'https://api.sandbox.paypal.com/v1/oauth2/token', [
@@ -170,7 +184,7 @@ class PanierController extends AbstractController
       'grant_type' => 'client_credentials'
      ]
 
-   ]);
+    ]);
     return(json_decode($response->getContent())->access_token);
   }
 

@@ -111,8 +111,9 @@
 					return fetch('capture-order/' + data.orderID, {
 						method: 'POST'
 					}).then(function(res) {
+						console.log(JSON.stringify(res));
 						if (!res.ok) {
-						alert('Something went wrong');
+							alert('Something went wrong');
 						}
 					});
 					}
