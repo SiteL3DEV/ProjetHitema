@@ -18,15 +18,15 @@
 				<section class="wrapper">
 					<div class="row">
 						<div class="main-chart w-100">
-							<h1>
+							<h1 class="titre-panier">
 								<center>Panier</center>
 							</h1>
-							<div class="row w-75 mt-5 ml-auto mr-auto">
-								<div class="col-md-8">
 									<!--<div class="i-empty-basket hidden-xs-up" data-cy="empty-basket">
 										<br>
 										Votre panier est actuellement vide.
 									</div>-->
+							<div class="content_payment row w-75 mt-5 ml-auto mr-auto">
+								<div class="col-md-8">
 									{% for onePanier in panier %}
 										<div class="mt-5 basket-item row i-basket-item basket-item">
 											<div class="basket-item__image col-4 col-lg-2">
@@ -81,12 +81,13 @@
 											Appliquer
 										</a>
 									</form>
-									<a style="background-color:skyblue;" class="w-100 btn btn--primary centered i-checkout-button" href="#" title="Procédez au règlement final">Payer</a>
+									<button style="background-color:skyblue;" class="w-100 btn btn--primary centered i-checkout-button payer" title="Procédez au règlement final"
+									type="button" data-toggle="collapse" data-target="#paypal-button-container" aria-expanded="false" aria-controls="collapseExample">Payer</button>
 									<br><br>
-									<center><a href="#">
+									<div class="collapse" id="paypal-button-container"></div>
+									<center><a href="{{ path('oc_accueil_index') }}">
 										<button class="btn btn--secondary centered" title="Poursuivre vos achats">Poursuivre vos achats</button>
 									</a></center><br>
-									<div id="paypal-button-container"></div>
 								</div>
 							</div>
 						</div>
@@ -99,7 +100,8 @@
 				setTotal();
 				paypal.Buttons({
 					createOrder: function (data, actions) {
-					return fetch('create-order', {
+						let price = Number.parseFloat($('.totalpanier').html().replace(' €', '')).toFixed(2);
+					return fetch('create-order/' + price, {
 						method: 'POST'
 					}).then(function(res) {
 						return res.json();
@@ -108,12 +110,25 @@
 					});
 					},
 					onApprove: function (data, actions) {
+						$('.titre-panier').remove();
+						$('.content_payment').html(`<img class="ml-auto mr-auto" alt="spinner" src="{{ asset('build/img/spinner_payment.gif') }}" width="400" height="400">`)
 					return fetch('capture-order/' + data.orderID, {
 						method: 'POST'
 					}).then(function(res) {
-						console.log(JSON.stringify(res));
 						if (!res.ok) {
 							alert('Something went wrong');
+						}else{
+							$('.content_payment').html(`<div class="jumbotron text-center mr-auto ml-auto">
+									<h1 class="display-3">Paiement effectué !</h1>
+									<p class="lead">Le paiement à été confirmé, vous recevrez vos produits d'ici peu de temps.</p>
+									<hr>
+									<p>
+										Des problèmes ? <a href="">Nous contacter</a>
+									</p>
+									<p class="lead">
+										<a class="btn btn-primary btn-sm" href="{{ path('oc_accueil_index') }}" role="button">Poursuivez vos achats</a>
+									</p>
+								</div>`);
 						}
 					});
 					}

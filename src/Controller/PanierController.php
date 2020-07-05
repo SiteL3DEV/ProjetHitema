@@ -122,9 +122,9 @@ class PanierController extends AbstractController
     return new Response($content);
   }
   /**
-   * @Route("/create-order", name="oc_paypal")
+   * @Route("/create-order/{price}", name="oc_paypal")
    */
-  public function paypalCreate(Request $req)
+  public function paypalCreate(int $price, Request $req)
   {
     $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
     /** @var \App\Entity\Utilisateurs $user **/
@@ -143,7 +143,7 @@ class PanierController extends AbstractController
             {
               "amount": {
                 "currency_code": "EUR",
-                "value": "10.00"
+                "value": "'.$price.'"
               }
             }
           ]
