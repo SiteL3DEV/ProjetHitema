@@ -25,7 +25,7 @@
                     <h1><center>Mon compte</center></h1>
                     <div style="padding-top: 5%;width: 1000px;margin:0 auto;">
                     
-                <a href="#">
+                <a href="{{ path('oc_mes_annonces') }}">
                   <div class="profil1">
                       <table style="width: 400px;height: 100px;" class="btn btn-outline-success my-2 my-sm-0">
                           <tr>
@@ -34,8 +34,8 @@
                               </td>
 
                               <td width="400">
-                                  <span style="font-weight: bold">Vos commandes</span><br>
-                                  <span style="">Louer ou acheter à nouveau</span>
+                                  <span style="font-weight: bold">Mes annonces</span><br>
+                                  <span style="">Gérer vos annonces</span>
                               </td>
                           </tr>
                       </table>
@@ -50,7 +50,7 @@
                             </td>
 
                             <td width="400">
-                                <span style="font-weight: bold">Paramètres de sécurité</span><br>
+                                <span style="font-weight: bold">Profil</span><br>
                                 <span style="">Modifier vos informations <br>personnelles</span>
                             </td>
                         </tr>
@@ -58,16 +58,16 @@
                     </div></a>
                 <br><br>
 
-                <a href="#"><div class="profil1">
+                        <a href="{{ path('oc_contact') }}"><div class="profil1">
                     <table style="width: 400px;height: 100px;"class="btn btn-outline-success my-2 my-sm-0">
                         <tr>
                             <td>
-                                <span style=""><img width="100" src="{{ asset('build/img/profil/adresse.png') }}"></span>
+                                <span style=""><img width="70" src="{{ asset('build/img/profil/aide.png') }}"></span>
                             </td>
 
                             <td width="400">
-                                <span style="font-weight: bold">Adresses</span><br>
-                                <span style="">Modifier les adresses de livraison<br> des commandes</span>
+                                <span style="font-weight: bold">Besoin d'aide ?</span><br>
+                                <span style="">Demandez de l'aide à propos de la </br>vente ou la location d'un produit</span>
                             </td>
                         </tr>
                     </table>

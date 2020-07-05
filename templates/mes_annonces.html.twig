@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Dashboard">
+    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+    <title>Dashio - Bootstrap Admin Template</title>
+    {% include 'header.html.twig' %}
+</head>
+<html lang="en">
+<body>
+<section id="container">
+    <!--Barre d'en haut-->
+    {% include 'top_bar.html.twig' %}
+    <!--Menu de gauche-->
+    {% include 'side_menu.html.twig' %}
+    <!--Barre de recherche accueil-->
+    <section id="main-content"> <section class="wrapper">
+        <div class="row">
+            <div class="main-chart w-100">
+                <h1><center>Mes annonces</center></h1>
+                <nav class="navbar navbar-light bg-light mt-5 ml-auto mr-auto">
+                    <div class="form-inline ml-auto mr-auto">
+                        <input id="nameProduit" class="form-control mr-sm-2" type="search" placeholder="Rechercher" aria-label="Rechercher" minlength="1" maxlength="30" size="70">
+                        <button id="searchAnnonce" class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
+                    </div>
+                </nav>
+                <div class="row contentannonces w-75 mt-5 ml-auto mr-auto">
+                    {% for annonce in annonces %}
+                    <div class="col-md-4">
+                        <div style="height:auto !important;" class="card">
+                            <h3>{{annonce.nom}}</h3>
+                            <img style="width:200px; height:200px;" src="{{ asset('imgajout/annonces/' ~ annonce.image) }}" class="card-img-top ml-auto mr-auto" alt="...">
+                            <div class="card-body">
+                                <p class="card-text">{{annonce.description}}</p>
+                                <center><a href="modifierAnnonce/{{ annonce.id }}" class="btn btn-outline-success my-2 my-sm-0">Modifier</a></center>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="row mt-5">
+                    <nav class="mr-auto ml-auto" aria-label="Navigation">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">1</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">2</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">3</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    </section>
+    <script>
+        $(document).ready(function(){
+            $('#searchAnnonce').on('click', function(){
+                const nom = $('#nameProduit').val();
+                $.get("tabannonces/" + nom, function(data) {
+                    const annonces = JSON.parse(data);
+                    let html = '';
+                    $.each(annonces, function( index, value ) {
+                    $.each(annonces, function( index, value ) {
+                        html +=`<div class="col-md-4">
+										<div style="height:auto !important;" class="card">
+											<h3>` + value['nom'] + `</h3>
+											<img style="width:200px; height:200px;" src="/ProjetHitema/public/imgajout/annonces/` + value['image'] + `" class="card-img-top ml-auto mr-auto" alt="...">
+											<div class="card-body">
+												<p class="card-text">` + value['description'] + `</p>
+												<center><a href="detailannonce/` + value['id'] + `" class="btn btn-outline-success my-2 my-sm-0">Accéder au produit</a></center>
+											</div>
+										</div>
+									</div>`;
+                    });
+                    $('.contentannonces').html(html);
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

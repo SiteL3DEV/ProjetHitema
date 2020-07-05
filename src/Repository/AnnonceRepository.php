@@ -35,6 +35,16 @@ class AnnonceRepository extends ServiceEntityRepository
         ;
     }
 
+    public function byUser($idUser)
+    {
+        return $this->createQueryBuilder('annonce')
+            ->andWhere('annonce.id_utilisateur = :idUser')
+            ->setParameter('idUser',  $idUser)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     /*
     public function findOneBySomeField($value): ?Annonce
     {
