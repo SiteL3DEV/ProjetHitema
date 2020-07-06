@@ -7,8 +7,65 @@
 <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 <title>Dashio - Bootstrap Admin Template</title>
 {% include 'header.html.twig' %}
+
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+	<script async defer
+			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyOzx1FZ-gqrnwi6ttf8hW01VH4Xd6tSU&callback=initMap&libraries=&v=weekly">
+	</script>
+	<style type="text/css">
+		/* Always set the map height explicitly to define the size of the div
+         * element that contains the map. */
+		#map {
+			height: 100%;
+			width: 100%;
+			margin: auto;
+		}
+
+		/* Optional: Makes the sample page fill the window. */
+		html,
+		body {
+			height: 100%;
+			margin: 0;
+			padding: 0;
+		}
+	</style>
+	<script>
+		var panorama;
+		var marker;
+		function initMap(){
+			var adresse = "{{ annonce.utilisateur.adresse }}"; // Nous récupérons le contenu du champ adresse
+			var lat = 0;
+			var lon = 0;
+			if(adresse != ""){ // Si l'adresse n'est pas vide
+				var geocoder =  new google.maps.Geocoder(); // On instancie le geocoder
+				geocoder.geocode( { 'address': adresse}, function(results, status) {
+					if (status == google.maps.GeocoderStatus.OK) { // Si l'adresse a été résolue
+						lat = results[0].geometry.location.lat(); // On récupère la latitude
+						lon = results[0].geometry.location.lng(); // On récupère la longitude
+						console.log(lat);
+						console.log(lon);
+						var MyPosition = {lat: lat, lng:  lon};
+
+						panorama = new google.maps.Map(
+								document.getElementById('map'),
+								{
+									center: MyPosition,
+									zoom: 18
+								});
+						marker = new google.maps.Marker({
+							position: MyPosition,
+							map: panorama,
+							title: adresse
+						});
+					} else {
+						alert("Something got wrong " + status);
+					}
+				});
+			}
+		}
+	</script>
 </head>
-<html lang="en">
+<html lang="fr">
 	<body>
 		<section id="container">
 			<!--Barre d'en haut-->
@@ -56,7 +113,7 @@
 											</div>
 											<p class="product-description">{{annonce.description}}</p>
 											<h4 class="price">Prix : <span>{{annonce.tarif}} €</span></h4>
-											<p class="vote"><strong>91%</strong> des acheteurs ont appréciés ce produit !<strong>(87 votes)</strong></p>
+											<p class="vote"><strong>91%</strong> des acheteurs ont appréciés ce produit ! <strong>(87 votes)</strong></p>
 											<h5 class="sizes">Tailles
 												<span class="size" data-toggle="tooltip" title="small">s</span>
 												<span class="size" data-toggle="tooltip" title="medium">m</span>
@@ -67,7 +124,9 @@
 												<span class="color orange not-available" data-toggle="tooltip" title="Not In store"></span>
 												<span class="color green"></span>
 												<span class="color blue"></span>
-											</h5>
+											</h5><br>
+											<div id="map"></div>
+											<br>
 											<div class="action">
 												<button data-idannonce="{{annonce.id}}" id="ajoutpanier" class="add-to-cart btn btn-default" >Ajouter au panier</button>
 												<button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
