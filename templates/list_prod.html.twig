@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Panier</title>
+	{% include 'header.html.twig' %}
+</head>
+<html lang="en">
+	<body>
+		<section
+			id="container">
+			<!--Barre d'en haut-->
+			{% include 'top_bar.html.twig' %}
+			<!--Menu de gauche-->
+			{% include 'side_menu.html.twig' %}
+			<!--Barre de recherche accueil-->
+			<section id="main-content">
+				<section class="wrapper">
+					<div class="row">
+						<div class="main-chart w-100">
+							<h1 class="titre-panier">
+								<center>Produits</center>
+							</h1>
+							<!--<div class="i-empty-basket hidden-xs-up" data-cy="empty-basket">
+								<br>
+								Aucune commande.
+							</div>-->
+							<div class="content_payment row w-75 mt-5 ml-auto mr-auto">
+								{% for onePanier in panier %}
+								<div class="col-md-8">
+									<div class="mt-5 basket-item row i-basket-item basket-item panierelem">
+										<div class="basket-item__image col-4 col-lg-2">
+											<img alt="Hand Plane Hydro Body Pro Surfer" src="{{ asset('imgajout/annonces/' ~ onePanier.annonce.image) }}" width="120" height="120">
+										</div>
+										<div class="details col-8 col-lg-10">
+											<div class="row">
+												<div class="col-lg-7 col-md-12 basket-item__details">
+													<h2 class="basket-item__title">
+														<a href="detailannonce/{{onePanier.annonce.id}}" title="{{onePanier.annonce.nom}}">{{onePanier.annonce.nom}}</a>
+													</h2>
+													<h3 class="basket-item__meta">
+														Blue</h3>
+													<h3 class="basket-item__meta">Taille Unique</h3>
+												</div>
+												<div class="col-md-6 mt-5 col-lg-3">
+													<p>Quantite : {{onePanier.quantite}}</p>
+												</div>
+												<div class="col-md-6 mt-5 col-lg-2">
+													<div class="price">
+														<h4 data-price="{{onePanier.annonce.tarif * onePanier.quantite}}" class="price--fullprice i-product-full-price price price{{onePanier.id}}">{{onePanier.annonce.tarif * onePanier.quantite}}&nbsp;€</h4>
+													</div>
+													<a class="basket-item__remove i-basket-remove supprpanier" style="cursor:pointer;" data-idpanier="{{onePanier.id}}" title="Remove From Basket">Valider</a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<input type="hidden" class="prixunitaire{{onePanier.id}}" value="{{onePanier.annonce.tarif}}">
+								</div>
+								
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</section>
+			</section>
+		</section>
+		<script>
+			$(document).ready(function(){
+			});
+
+		</script>
+	</body>
+</html>

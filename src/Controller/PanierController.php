@@ -171,6 +171,20 @@ class PanierController extends AbstractController
     return new Response($response->getContent());
   }
 
+  /**
+   * @Route("/setpaye", name="oc_paypal_setpaye")
+   */
+  public function setPaye(Request $req)
+  {
+    $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+    /** @var \App\Entity\Utilisateurs $user **/
+    $user = $this->getUser();
+
+    $em = $this->getDoctrine()->getManager();
+    $em->getRepository(Panier::class)->setPanierPaye($user->getId());
+    
+    return new Response('ok');
+  }
 
   private function authPaypal(){
     $response = HttpClient::create()->request('POST', 'https://api.sandbox.paypal.com/v1/oauth2/token', [

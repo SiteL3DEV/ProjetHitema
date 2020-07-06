@@ -16,9 +16,10 @@ class Annonce
  */
   private $id;
   /**
- * @ORM\Column(type="integer")
- */
-  private $id_utilisateur;
+   * @ORM\ManyToOne(targetEntity="Utilisateurs")
+   * @ORM\JoinColumn(name="id_utilisateur", referencedColumnName="id")
+   */
+  private $utilisateur;
   /**
  * @ORM\Column(type="date")
  */
@@ -172,42 +173,11 @@ class Annonce
     return $this;
   }
 
-  /**
-   * Get the value of id_utilisateur
-   */ 
-  public function getId_utilisateur()
-  {
-    return $this->id_utilisateur;
-  }
-
-  /**
-   * Set the value of id_utilisateur
-   *
-   * @return  self
-   */ 
-  public function setId_utilisateur($id_utilisateur)
-  {
-    $this->id_utilisateur = $id_utilisateur;
-
-    return $this;
-  }
-
   public function getId(): ?int
   {
       return $this->id;
   }
 
-  public function getIdUtilisateur(): ?int
-  {
-      return $this->id_utilisateur;
-  }
-
-  public function setIdUtilisateur(int $id_utilisateur): self
-  {
-      $this->id_utilisateur = $id_utilisateur;
-
-      return $this;
-  }
 
   /**
    * Get the value of nom
@@ -225,6 +195,26 @@ class Annonce
   public function setNom($nom)
   {
     $this->nom = $nom;
+
+    return $this;
+  }
+
+  /**
+   * Get the value of utilisateur
+   */ 
+  public function getUtilisateur()
+  {
+    return $this->utilisateur;
+  }
+
+  /**
+   * Set the value of utilisateur
+   *
+   * @return  self
+   */ 
+  public function setUtilisateur($utilisateur)
+  {
+    $this->utilisateur = $utilisateur;
 
     return $this;
   }
