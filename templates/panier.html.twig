@@ -21,10 +21,10 @@
 							<h1 class="titre-panier">
 								<center>Panier</center>
 							</h1>
-									<!--<div class="i-empty-basket hidden-xs-up" data-cy="empty-basket">
-										<br>
-										Votre panier est actuellement vide.
-									</div>-->
+							<!--<div class="i-empty-basket hidden-xs-up" data-cy="empty-basket">
+								<br>
+								Votre panier est actuellement vide.
+							</div>-->
 							<div class="content_payment row w-75 mt-5 ml-auto mr-auto">
 								<div class="col-md-8">
 									{% for onePanier in panier %}
@@ -140,7 +140,7 @@
 			$('.content_payment').on('click', '.supprpanier',function(){
 				const idannonce = $(this).data('idpanier');
 				const elem = $(this);
-				$.get("/ProjetHitema/public/index.php/supprimepanier/" + idannonce, function() {
+				$.get("{/ProjetHitema/public/index.php/supprimepanier/}" + idannonce, function() {
 					elem.parents('.panierelem').fadeOut(300, function() { 
 						$(this).remove();setTotal(); 
 						afficherPanier();

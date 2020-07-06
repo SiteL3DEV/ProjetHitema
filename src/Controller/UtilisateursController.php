@@ -120,4 +120,12 @@ class UtilisateursController extends AbstractController
         ));
 
     }
+    
+    /**
+     * @Route("/maps")
+     */
+    public function mapsAction()
+    {
+        return $this->render('maps.html.twig');
+    }
 }

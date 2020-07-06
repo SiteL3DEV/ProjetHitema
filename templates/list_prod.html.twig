@@ -56,7 +56,11 @@
 									</div>
 									<input type="hidden" class="prixunitaire{{onePanier.id}}" value="{{onePanier.annonce.tarif}}">
 								</div>
-								
+								<div class="col-md-3 ml-5 mt-5 basket-item">
+									<p class="ml-5"> Nom : {{onePanier.annonce.utilisateur.nom |capitalize}}</p>
+									<p class="ml-5"> Prénom : {{onePanier.annonce.utilisateur.prenom |capitalize}}</p>
+									<p class="ml-5"> Mail : {{onePanier.annonce.utilisateur.mail |capitalize}}</p>
+								</div>
 								{% endfor %}
 							</div>
 						</div>
