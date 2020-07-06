@@ -27,6 +27,11 @@ class Panier
  */
   private $quantite;
 
+  /**
+ * @ORM\Column(type="string", length=20)
+ */
+  private $status = 'impaye';
+
 
 
   /**
@@ -93,6 +98,26 @@ class Panier
   public function setQuantite($quantite)
   {
     $this->quantite = $quantite;
+
+    return $this;
+  }
+
+  /**
+   * Get the value of status
+   */ 
+  public function getStatus()
+  {
+    return $this->status;
+  }
+
+  /**
+   * Set the value of status
+   *
+   * @return  self
+   */ 
+  public function setStatus($status)
+  {
+    $this->status = $status;
 
     return $this;
   }

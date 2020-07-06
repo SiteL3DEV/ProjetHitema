@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Twig\Environment;
 use App\Entity\Annonce;
+use App\Entity\Panier;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -39,6 +40,27 @@ class AnnonceController extends AbstractController
                                                 ]);
     return new Response($content);
   }
+  /**
+   * @Route("/annoncespaye", name="oc_annonce_paye")
+   */
+  public function annoncePaye(Environment $twig)
+  {
+    $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+    /** @var \App\Entity\Utilisateurs $user */
+    $user = $this->getUser();
+    if($user){
+      $name = $user->getNom().' '.$user->getPrenom();
+      $btnLogInOut = 'Se déconnecter';
+    }
+    $em = $this->getDoctrine()->getManager();
+    $panier = $em->getRepository(Panier::class)->findAllPanierPaye($user->getId());
+    $content = $twig->render('list_prod.html.twig', [
+                                                  'loginout' => $btnLogInOut,
+                                                  'name' => $name,
+                                                  'panier' => $panier
+                                                ]);
+    return new Response($content);
+  }
 
   /**
    * @Route("/deposerannonce", name="oc_deposer_annonce")
@@ -70,7 +92,7 @@ class AnnonceController extends AbstractController
           ->add('Enregistrer',     SubmitType::class)
           ->getForm()
       ;
-      $annonce->setId_utilisateur($user->getId());
+      $annonce->setUtilisateur($user);
       // Si la requête est en POST
       if ($request->isMethod('POST')) {
           // On fait le lien Requête <-> Formulaire
@@ -110,8 +132,6 @@ class AnnonceController extends AbstractController
                 }               
 
             }
-
-
           }
       }
 

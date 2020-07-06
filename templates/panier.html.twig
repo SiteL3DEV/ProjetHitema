@@ -28,7 +28,7 @@
 							<div class="content_payment row w-75 mt-5 ml-auto mr-auto">
 								<div class="col-md-8">
 									{% for onePanier in panier %}
-										<div class="mt-5 basket-item row i-basket-item basket-item">
+										<div class="mt-5 basket-item row i-basket-item basket-item panierelem">
 											<div class="basket-item__image col-4 col-lg-2">
 												<img alt="Hand Plane Hydro Body Pro Surfer" src="{{ asset('imgajout/annonces/' ~ onePanier.annonce.image) }}" width="120" height="120">
 											</div>
@@ -53,7 +53,7 @@
 														<div class="price">
 															<h4 data-price="{{onePanier.annonce.tarif * onePanier.quantite}}" class="price--fullprice i-product-full-price price price{{onePanier.id}}">{{onePanier.annonce.tarif * onePanier.quantite}}&nbsp;€</h4>
 														</div>
-														<a class="basket-item__remove i-basket-remove" title="Remove From Basket">Retirer</a>
+														<a class="basket-item__remove i-basket-remove supprpanier" style="cursor:pointer;" data-idpanier="{{onePanier.id}}" title="Remove From Basket">Retirer</a>
 													</div>
 												</div>
 											</div>
@@ -129,35 +129,50 @@
 										<a class="btn btn-primary btn-sm" href="{{ path('oc_accueil_index') }}" role="button">Poursuivez vos achats</a>
 									</p>
 								</div>`);
+							$.get("{{ path('oc_paypal_setpaye') }}", function() {
+							});
 						}
 					});
 					}
 				}).render('#paypal-button-container');
 			});
 
+			$('.content_payment').on('click', '.supprpanier',function(){
+				const idannonce = $(this).data('idpanier');
+				const elem = $(this);
+				$.get("/ProjetHitema/public/index.php/supprimepanier/" + idannonce, function() {
+					elem.parents('.panierelem').fadeOut(300, function() { 
+						$(this).remove();setTotal(); 
+						afficherPanier();
+					});
+				});
+			});
+
 			$('.add').on('click', function(){
 				const idpanier = $(this).data('panierid');
-				$.get("ajoutquantitepanier/" + idpanier + "/ajout", function(data) {
-					if($('.quantite' + idpanier).val()<30){
-						$('.quantite' + idpanier).val(parseInt($('.quantite' + idpanier).val())+1);
-						let prix = parseInt($('.price' + idpanier).data('price')) + parseInt($('.prixunitaire' + idpanier).val());
-						$('.price' + idpanier).html( prix + " €");
-						$('.price' + idpanier).data('price', prix);
-						setTotal();
-					}
-				});
+				if($('.quantite' + idpanier).val()<30){
+					$.get("ajoutquantitepanier/" + idpanier + "/ajout", function(data) {
+							$('.quantite' + idpanier).val(parseInt($('.quantite' + idpanier).val())+1);
+							let prix = parseInt($('.price' + idpanier).data('price')) + parseInt($('.prixunitaire' + idpanier).val());
+							$('.price' + idpanier).html( prix + " €");
+							$('.price' + idpanier).data('price', prix);
+							setTotal();
+							afficherPanier(); // fonction dans top_bar.html.twig
+					});
+				}
 			});
 			$('.remove').on('click', function(){
 				const idpanier = $(this).data('panierid');
-				$.get("ajoutquantitepanier/" + idpanier + "/suppr", function(data) {
-					if($('.quantite' + idpanier).val()>1){
-						$('.quantite' + idpanier).val(parseInt($('.quantite' + idpanier).val())-1);
-						let prix = parseInt($('.price' + idpanier).data('price')) - parseInt($('.prixunitaire' + idpanier).val());
-						$('.price' + idpanier).html( prix + " €");
-						$('.price' + idpanier).data('price', prix);
-						setTotal();
-					}
-				});
+				if($('.quantite' + idpanier).val()>1){
+					$.get("ajoutquantitepanier/" + idpanier + "/suppr", function(data) {
+							$('.quantite' + idpanier).val(parseInt($('.quantite' + idpanier).val())-1);
+							let prix = parseInt($('.price' + idpanier).data('price')) - parseInt($('.prixunitaire' + idpanier).val());
+							$('.price' + idpanier).html( prix + " €");
+							$('.price' + idpanier).data('price', prix);
+							setTotal();
+							afficherPanier(); // fonction dans top_bar.html.twig
+					});
+				}
 			});
 
 			function setTotal(){
