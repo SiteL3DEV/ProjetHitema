@@ -5,6 +5,7 @@ namespace App\Controller;
 // ...
 use App\Entity\Utilisateurs;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -120,4 +121,38 @@ class UtilisateursController extends AbstractController
         ));
 
     }
+    /**
+     * @Route("/maps")
+     */
+    public function mapsAction()
+    {
+        return $this->render('maps.html.twig');
+    }
+//    public function paypalCreate(int $price, Request $req)
+//    {
+//        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+//        /** @var \App\Entity\Utilisateurs $user **/
+//        $user = $this->getUser();
+//
+//        $accesstoken = $this->authPaypal();
+//        //var_dump($accesstoken);
+//        $response = HttpClient::create()->request('POST', '', [
+//            'headers' => [
+//                'Content-Type' => 'application/json'
+//            ],
+//            'auth_bearer' => $accesstoken,
+//            'body' => '{
+//          "intent": "CAPTURE",
+//          "purchase_units": [
+//            {
+//              "amount": {
+//                "currency_code": "EUR",
+//                "value": "'.$price.'"
+//              }
+//            }
+//          ]
+//        }'
+//        ]);
+//        return new Response($response->getContent());
+//    }
 }

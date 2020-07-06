@@ -38,7 +38,7 @@
       afficherPanier();
       $('#ajoutpanier').on('click', function(){
           const idannonce = $(this).data('idannonce');
-          $.get("/ProjetHitema/public/index.php/ajoutpanier/" + idannonce, function() {
+          $.get("/public/index.php/ajoutpanier/" + idannonce, function() {
               afficherPanier();
               	$('.msg').fadeIn('slow');
 			          $('.msg').delay(2000).fadeOut('slow');
@@ -46,14 +46,14 @@
       });
       $('#panier').on('click', '#deletepanier',function(){
           const idannonce = $(this).data('idpanier');
-          $.get("/ProjetHitema/public/index.php/supprimepanier/" + idannonce, function() {
+          $.get("/public/index.php/supprimepanier/" + idannonce, function() {
               afficherPanier();
             });
       });
     });
 
     function afficherPanier(){
-      $.get("/ProjetHitema/public/index.php/getpanier/", function( data ) {
+      $.get("/public/index.php/getpanier/", function( data ) {
           const allAnnonces = JSON.parse(data);
           $('#nbpanier').html(allAnnonces.length);
           let html = `<div class="notify-arrow notify-arrow-green"></div>
@@ -63,8 +63,8 @@
           $.each(allAnnonces, function( index, value ) {  
               html +=`<li class="row">
                         <div class="col-md-9 pr-0">
-                          <a href="/ProjetHitema/public/index.php/detailannonce/` + value['annonce']['id'] + `">
-                            <span class="photo"><img alt="avatar" src="/ProjetHitema/public/imgajout/annonces/` + value['annonce']['image'] + `"></span>
+                          <a href="/public/index.php/detailannonce/` + value['annonce']['id'] + `">
+                            <span class="photo"><img alt="avatar" src="/public/imgajout/annonces/` + value['annonce']['image'] + `"></span>
                             <span class="subject">
                                 <span class="nom ml-1">` + value['annonce']['nom'] + `</span>
                             </span>

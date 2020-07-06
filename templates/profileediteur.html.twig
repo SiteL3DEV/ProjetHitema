@@ -7,6 +7,71 @@
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
     <title>Dashio - Bootstrap Admin Template</title>
     {% include 'header.html.twig' %}
+
+
+
+
+
+
+
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script
+{#            Key:AIzaSyAyOzx1FZ-gqrnwi6ttf8hW01VH4Xd6tSU#}
+            src="https://maps.googleapis.com/maps/api/geocode/json?address=88+Boulevard+Gallieni,+Issy+les-+Moulineaux,+France&key=AIzaSyAyOzx1FZ-gqrnwi6ttf8hW01VH4Xd6tSU#"
+            defer
+    ></script>
+    <style type="text/css">
+        /* Always set the map height explicitly to define the size of the div
+         * element that contains the map. */
+        #map {
+            height: 50%;
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        /* Optional: Makes the sample page fill the window. */
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <script>
+        // (function(exports) {
+        //     "use strict";
+        //
+        //     function initMap() {
+        //         var myLatLng = {lat: 48.8239202, lng: 2.2678774};
+        //
+        //         var map = new google.maps.Map(document.getElementById('map'), {
+        //             zoom: 20,
+        //             center: myLatLng
+        //         });
+        //
+        //         var marker = new google.maps.Marker({
+        //             position: myLatLng,
+        //             map: map,
+        //             title: 'Hello World!'
+        //         });
+        //     }
+        //
+        //     exports.initMap = initMap;
+        // })((this.window = this.window || {}));
+
+        var panorama;
+
+        function initMap(){
+            panorama = new google.maps.StreetViewPanorama(
+                document.getElementById('map'),
+                {
+                    position: {lat: 48.825218200683594, lng: 2.267763137817383},
+                    pov: {heading: 165, pitch: 0},
+                    zoom: 1
+                });
+        }
+    </script>
 </head>
 <html lang="en">
 <body>
@@ -91,5 +156,6 @@
         </section>
     </section>
 </section>
+<div id="map"></div>
 </body>
 </html>
