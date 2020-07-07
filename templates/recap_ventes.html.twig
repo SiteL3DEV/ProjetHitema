@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Panier</title>
+	{% include 'header.html.twig' %}
+</head>
+<html lang="en">
+	<body>
+		<section
+			id="container">
+			<!--Barre d'en haut-->
+			{% include 'top_bar.html.twig' %}
+			<!--Menu de gauche-->
+			{% include 'side_menu.html.twig' %}
+			<!--Barre de recherche accueil-->
+			<section id="main-content">
+				<section class="wrapper">
+					<div class="row">
+						<div class="main-chart w-100">
+							<h1 class="titre-panier">
+								<center>Récapitulatif</center>
+							</h1>
+							<!--<div class="i-empty-basket hidden-xs-up" data-cy="empty-basket">
+								<br>
+								Aucune commande.
+							</div>-->
+							<div class="content_payment row w-75 mt-5 ml-auto mr-auto">
+								{% for onePanier in panier %}
+								<div class="col-12 col-md-6 col-lg-4">
+									<div class="card" style="display: contents;">
+										<img class="card-img-top" src="{{ asset('imgajout/annonces/' ~ onePanier.annonce.image) }}" style="height:260px" alt="Card image cap">
+										<div class="card-body">
+											<h4 class="card-title"><a href="detailannonce/{{onePanier.annonce.id}}" title="View Product">{{onePanier.annonce.nom | capitalize}}</a></h4>
+											<p class="card-text">Prix unitaire : {{onePanier.annonce.tarif}} € <span class ="float-right">Quantite : {{onePanier.quantite}}</span></p>
+											<p class="card-text">Acheteur : {{onePanier.utilisateur.nom |capitalize}} {{onePanier.utilisateur.prenom |capitalize}}</p>
+											<p class="card-text">Contact : {{onePanier.utilisateur.mail}}</p>
+											<p class="card-text">Paiement : Paypal</p>
+											<div class="row">
+												<div class="col">
+													<p class="btn btn-success btn-block"> + {{onePanier.annonce.tarif * onePanier.quantite}}&nbsp;€</p>
+												</div>
+												<div class="col">
+													<a href="#" class="btn btn-danger btn-block">Supprimer</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</section>
+			</section>
+		</section>
+		<script>
+			$(document).ready(function(){
+			});
+			$('.content_payment').on('click', '.supprpanier',function(){
+				const idpanier = $(this).data('idpanier');
+				const elem = $(this);
+				$.get("/ProjetHitema/public/index.php/valideproduit/" + idpanier, function() {
+					elem.parents('.produit').fadeOut(300, function() { 
+						$(this).remove();
+					});
+				});
+			});
+		</script>
+	</body>
+</html>

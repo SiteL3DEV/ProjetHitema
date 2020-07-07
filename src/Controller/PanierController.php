@@ -43,17 +43,17 @@ class PanierController extends AbstractController
     $panier = new Panier();
     $em = $this->getDoctrine()->getManager();
     $annonce = $em->getRepository(Annonce::class)->findOneBy(array('id' => $idannonce));
-    $panierIfExist = $em->getRepository(Panier::class)->findOneBy(array('annonce' => $idannonce));
+    $panierIfExist = $em->getRepository(Panier::class)->findBy(array('annonce' => $annonce, 'utilisateur' => $user));
     $panierid;
     if(!$panierIfExist){
       $panier->setAnnonce($annonce);
-      $panier->setId_utilisateur($user->getId());
+      $panier->setUtilisateur($user);
       $panier->setQuantite(1);
       $em->persist($panier);
       $em->flush();
       $panierid = $panier->getId();
     }else{
-      $panierid = $this->ajoutQuantite($panierIfExist->getId(), 'ajout', $serializer);
+      $panierid = $this->ajoutQuantite($panierIfExist[0]->getId(), 'ajout', $serializer);
     }
     return new Response($panierid);
   }
@@ -131,7 +131,6 @@ class PanierController extends AbstractController
     $user = $this->getUser();
 
     $accesstoken = $this->authPaypal();
-    //var_dump($accesstoken);
     $response = HttpClient::create()->request('POST', 'https://api.sandbox.paypal.com/v2/checkout/orders', [
         'headers' => [
             'Content-Type' => 'application/json'
@@ -184,6 +183,42 @@ class PanierController extends AbstractController
     $em->getRepository(Panier::class)->setPanierPaye($user->getId());
     
     return new Response('ok');
+  }
+
+  /**
+   * @Route("/valideproduit/{idproduit}", name="oc_paypal_setvalide")
+   */
+  public function setValidePanier(int $idproduit, Request $req)
+  {
+    $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+    /** @var \App\Entity\Utilisateurs $user **/
+    $user = $this->getUser();
+
+    $em = $this->getDoctrine()->getManager();
+    $em->getRepository(Panier::class)->setPanierValide($idproduit);
+    
+    return new Response('ok');
+  }
+  /**
+   * @Route("/getvalide", name="oc_paypal_getvalide")
+   */
+  public function getValidePanier(Request $req, Environment $twig)
+  {
+    $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+    /** @var \App\Entity\Utilisateurs $user **/
+    $user = $this->getUser();
+    if($user){
+        $name = $user->getNom().' '.$user->getPrenom();
+        $btnLogInOut = 'Se déconnecter';
+    }
+    $em = $this->getDoctrine()->getManager();
+    $panier = $em->getRepository(Panier::class)->findAllPanierValide($user->getId());
+    $content = $twig->render('recap_ventes.html.twig', [
+        'loginout' => $btnLogInOut,
+        'name' => $name,
+        'panier' => $panier
+    ]);
+    return new Response($content);
   }
 
   private function authPaypal(){

@@ -23,11 +23,6 @@ class AccueilController extends AbstractController
 
     $em = $this->getDoctrine()->getManager();
     $listAnnonces = $em->getRepository(Annonce::class)->findAll();
-    if (!$listAnnonces) {
-      throw $this->createNotFoundException(
-          'Aucune annonce touvée'
-      );
-    }
     if($user){
       $name = $user->getNom().' '.$user->getPrenom();
       $btnLogInOut = 'Se déconnecter';

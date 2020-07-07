@@ -33,11 +33,6 @@ class MesAnnoncesController extends AbstractController
     $em = $this->getDoctrine()->getManager();
 
     $listAnnonces = $em->getRepository(Annonce::class)->byUser($user ->getId());
-    if (!$listAnnonces) {
-      throw $this->createNotFoundException(
-          'Aucune annonce touvée'
-      );
-    }
     if($user){
       $name = $user->getNom().' '.$user->getPrenom();
       $btnLogInOut = 'Se déconnecter';
