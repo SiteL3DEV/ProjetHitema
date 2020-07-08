@@ -4,44 +4,48 @@ namespace App\Controller;
 
 // ...
 use App\Entity\Avis;
+use App\Entity\Annonce;
+use JMS\Serializer\SerializerInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AvisController extends AbstractController
 {
     /**
-     * @Route("/avis", name="creer_avis")
+     * @Route("/avis/{idannonce}/{note}/{comment}", name="creer_avis")
      */
-    public function creerAvis(): Response
+    public function creerAvis(int $idannonce, int $note, string $comment): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        /** @var \App\Entity\Utilisateurs $user **/
+        $user = $this->getUser();
         $entityManager = $this->getDoctrine()->getManager();
+        $annonce = $entityManager->getRepository(Annonce::class)->find($idannonce);
 
         $avis = new Avis();
-        $avis->setId_produit(12);
-        $avis->setNote(5);
-        $avis->setCommentaire('Test commentaire');
-        $avis->setId_utilisateur(9);
+        $avis->setAnnonce($annonce);
+        $avis->setNote($note);
+        $avis->setCommentaire($comment);
+        $avis->setUtilisateur($user);
 
-        // tell Doctrine you want to (eventually) save the Product (no queries yet)
         $entityManager->persist($avis);
 
-        // actually executes the queries (i.e. the INSERT query)
         $entityManager->flush();
 
         return new Response('Saved new avis with id '.$avis->getId());
     }
 
     /**
-     * @Route("/getavis", name="recup_avis")
+     * @Route("/getavis/{annonceid}", name="recup_avis")
      */
-    public function getAvis(): Response
+    public function getAvis(string $annonceid, SerializerInterface $serializer): Response
     {
         $avis = $this->getDoctrine()
         ->getRepository(Avis::class)
-        ->findAvisByCom("Test commentaire2");
-
-        return new Response($avis[0]->getNote());
+        ->findBy(array("annonce" => $annonceid));
+        $response = $serializer->serialize($avis,'json');
+        return new Response($response);
     }
 }

@@ -43,7 +43,7 @@ class PanierController extends AbstractController
     $panier = new Panier();
     $em = $this->getDoctrine()->getManager();
     $annonce = $em->getRepository(Annonce::class)->findOneBy(array('id' => $idannonce));
-    $panierIfExist = $em->getRepository(Panier::class)->findBy(array('annonce' => $annonce, 'utilisateur' => $user));
+    $panierIfExist = $em->getRepository(Panier::class)->findBy(array('annonce' => $annonce, 'utilisateur' => $user, 'status' => 'impaye'));
     $panierid;
     if(!$panierIfExist){
       $panier->setAnnonce($annonce);

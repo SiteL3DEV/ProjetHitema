@@ -14,9 +14,10 @@ class Avis
  */
   private $id;
   /**
- * @ORM\Column(type="integer")
- */
-  private $id_produit;
+   * @ORM\ManyToOne(targetEntity="Annonce")
+   * @ORM\JoinColumn(name="annonce_id", referencedColumnName="id")
+   */
+  private $annonce;
   /**
  * @ORM\Column(type="integer")
  */
@@ -26,29 +27,20 @@ class Avis
  */
   private $commentaire;
   /**
- * @ORM\Column(type="integer")
- */
-  private $id_utilisateur;
-
-
+   * @ORM\ManyToOne(targetEntity="Utilisateurs")
+   * @ORM\JoinColumn(name="id_utilisateur", referencedColumnName="id")
+   */
+  private $utilisateur;
   /**
-   * Get the value of id_produit
-   */ 
-  public function getId_produit()
-  {
-    return $this->id_produit;
-  }
-
-  /**
-   * Set the value of id_produit
    *
-   * @return  self
-   */ 
-  public function setId_produit($id_produit)
-  {
-    $this->id_produit = $id_produit;
+   * @ORM\Column(name="dateavis", type="date")
+   */
+  private $dateavis;
 
-    return $this;
+
+  public function __construct()
+  {
+      $this->dateavis = new \DateTime();
   }
 
   /**
@@ -92,26 +84,6 @@ class Avis
   }
 
   /**
-   * Get the value of id_utilisateur
-   */ 
-  public function getId_utilisateur()
-  {
-    return $this->id_utilisateur;
-  }
-
-  /**
-   * Set the value of id_utilisateur
-   *
-   * @return  self
-   */ 
-  public function setId_utilisateur($id_utilisateur)
-  {
-    $this->id_utilisateur = $id_utilisateur;
-
-    return $this;
-  }
-
-  /**
    * Get the value of id
    */ 
   public function getId()
@@ -119,27 +91,65 @@ class Avis
     return $this->id;
   }
 
-  public function getIdProduit(): ?int
+
+
+  /**
+   * Get the value of utilisateur
+   */ 
+  public function getUtilisateur()
   {
-      return $this->id_produit;
+    return $this->utilisateur;
   }
 
-  public function setIdProduit(int $id_produit): self
+  /**
+   * Set the value of utilisateur
+   *
+   * @return  self
+   */ 
+  public function setUtilisateur($utilisateur)
   {
-      $this->id_produit = $id_produit;
+    $this->utilisateur = $utilisateur;
 
-      return $this;
+    return $this;
   }
 
-  public function getIdUtilisateur(): ?int
+  /**
+   * Get the value of annonce
+   */ 
+  public function getAnnonce()
   {
-      return $this->id_utilisateur;
+    return $this->annonce;
   }
 
-  public function setIdUtilisateur(int $id_utilisateur): self
+  /**
+   * Set the value of annonce
+   *
+   * @return  self
+   */ 
+  public function setAnnonce($annonce)
   {
-      $this->id_utilisateur = $id_utilisateur;
+    $this->annonce = $annonce;
 
-      return $this;
+    return $this;
+  } 
+
+  /**
+   * Get the value of dateavis
+   */ 
+  public function getDateavis()
+  {
+    return $this->dateavis;
+  }
+
+  /**
+   * Set the value of dateavis
+   *
+   * @return  self
+   */ 
+  public function setDateavis($dateavis)
+  {
+    $this->dateavis = $dateavis;
+
+    return $this;
   }
 }
