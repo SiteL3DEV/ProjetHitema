@@ -37,11 +37,11 @@ class AccueilController extends AbstractController
   }
 
   /**
-   * @Route("/tabannonces/{nom}", name="tab_annonces")
+   * @Route("/tabannonces/{nom}/{filtre}", name="tab_annonces")
    */
-  public function getTabAnnonces(string $nom,  SerializerInterface $serializer){
+  public function getTabAnnonces(string $nom, string $filtre, SerializerInterface $serializer){
     $em = $this->getDoctrine()->getManager();
-    $listAnnonces = $em->getRepository(Annonce::class)->findByNom($nom);
+    $listAnnonces = $em->getRepository(Annonce::class)->findByNom($nom, $filtre);
     $response = $serializer->serialize($listAnnonces,'json');
     return new Response($response);
   }

@@ -23,16 +23,36 @@ class AnnonceRepository extends ServiceEntityRepository
     //  * @return Annonce[] Returns an array of Annonce objects
     //  */
 
-    public function findByNom($value)
+    public function findByNom($value, $filtre)
     {
-        return $this->createQueryBuilder('annonce')
-            ->andWhere('annonce.nom like :nom')
-            ->setParameter('nom', '%'.$value.'%')
-            ->orderBy('annonce.id', 'ASC')
+        $col = 'annonce.id';
+        $sort = 'ASC';
+        if($filtre == "croissant"){
+            $col = 'annonce.tarif';
+        }
+        if($filtre == "décroissant"){
+            $col = 'annonce.tarif';
+            $sort = 'DESC';
+        }
+        if($value == "aucun"){
+            return $this->createQueryBuilder('annonce')
+            ->orderBy($col, $sort)
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
-        ;
+            ; 
+        }else{
+            return $this->createQueryBuilder('annonce')
+            ->andWhere('annonce.nom like :nom')
+            ->setParameter('nom', '%'.$value.'%')
+            ->orderBy($col, $sort)
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+            ;
+        }
+            
+
     }
 
     public function byUser($idUser)

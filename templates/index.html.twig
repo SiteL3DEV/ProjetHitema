@@ -24,16 +24,26 @@
 								<div class="form-inline ml-auto mr-auto">
 									<input id="nameProduit" class="form-control mr-sm-2" type="search" placeholder="Rechercher" aria-label="Rechercher" minlength="1" maxlength="30" size="70">
 									<button id="searchAnnonce" class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
+									<div class="dropdown ml-5">
+										<button class="btn btn-secondary dropdown-toggle filtretext" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											Trier par
+										</button>
+										<div class="dropdown-menu filtre" aria-labelledby="dropdownMenuButton">
+											<a class="dropdown-item croissant" style="cursor:pointer;">Prix croissant</a>
+											<a class="dropdown-item decroissant" style="cursor:pointer;">Prix décroissant</a>
+										</div>
+									</div>
 								</div>
 							</nav>
 						<div class="row contentannonces w-75 mt-5 ml-auto mr-auto">
 							{% for annonce in annonces %}
 								<div class="col-md-4">
 									<div style="height:auto !important;" class="card">
-										<h3>{{annonce.nom}}</h3>
+										<center><h3>{{annonce.nom | capitalize}}</h3></center>
 										<img style="width:200px; height:200px;" src="{{ asset('imgajout/annonces/' ~ annonce.image) }}" class="card-img-top ml-auto mr-auto" alt="...">
 										<div class="card-body">
 											<p class="card-text">{{annonce.description}}</p>
+											<p class="card-text">Prix : {{annonce.tarif}} €</p>
 											<center><a href="detailannonce/{{annonce.id}}" class="btn btn-outline-success my-2 my-sm-0">Accéder au produit</a></center>
 										</div>
 									</div>
@@ -72,26 +82,39 @@
 		<script>
 			$(document).ready(function(){
 				$('#searchAnnonce').on('click', function(){
-					const nom = $('#nameProduit').val();
-					$.get("tabannonces/" + nom, function(data) {
-						const annonces = JSON.parse(data);
-						let html = '';
-						$.each(annonces, function( index, value ) {  
-							html +=`<div class="col-md-4">
-										<div style="height:auto !important;" class="card">
-											<h3>` + value['nom'] + `</h3>
-											<img style="width:200px; height:200px;" src="/ProjetHitema/public/imgajout/annonces/` + value['image'] + `" class="card-img-top ml-auto mr-auto" alt="...">
-											<div class="card-body">
-												<p class="card-text">` + value['description'] + `</p>
-												<center><a href="detailannonce/` + value['id'] + `" class="btn btn-outline-success my-2 my-sm-0">Accéder au produit</a></center>
-											</div>
-										</div>
-									</div>`;
-						});
-						$('.contentannonces').html(html);
-					});
+					if($('#nameProduit').val())
+						refreshAnnonces();
+				});
+				$('.filtre a').on('click', function(){
+					$('.filtretext').html($(this).text());
+					refreshAnnonces();
 				});
 			});
+
+			function refreshAnnonces(){
+				let nom = $('#nameProduit').val();
+				if(!nom)
+					nom = "aucun";
+				const filtre = $('.filtretext').html().replace('Prix ','');
+				$.get("tabannonces/" + nom + "/" + filtre, function(data) {
+					const annonces = JSON.parse(data);
+					let html = '';
+					$.each(annonces, function( index, value ) {  
+						html +=`<div class="col-md-4">
+									<div style="height:auto !important;" class="card">
+										<center><h3>` + value['nom'] + `</h3></center>
+										<img style="width:200px; height:200px;" src="/ProjetHitema/public/imgajout/annonces/` + value['image'] + `" class="card-img-top ml-auto mr-auto" alt="...">
+										<div class="card-body">
+											<p class="card-text">` + value['description'] + `</p>
+											<p class="card-text">Prix : ` + value['tarif'] + ` €</p>
+											<center><a href="detailannonce/` + value['id'] + `" class="btn btn-outline-success my-2 my-sm-0">Accéder au produit</a></center>
+										</div>
+									</div>
+								</div>`;
+					});
+					$('.contentannonces').html(html);
+				});
+			}
 		</script>
   </body>
 

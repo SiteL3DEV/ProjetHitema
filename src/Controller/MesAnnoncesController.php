@@ -45,16 +45,6 @@ class MesAnnoncesController extends AbstractController
 
     return new Response($content);
   }
-
-  /**
-   * @Route("/tabannonces/{nom}", name="tab_annonces")
-   */
-  public function getTabAnnonces(string $nom,  SerializerInterface $serializer){
-    $em = $this->getDoctrine()->getManager();
-    $listAnnonces = $em->getRepository(Annonce::class)->findByNom($nom);
-    $response = $serializer->serialize($listAnnonces,'json');
-    return new Response($response);
-  }
     /**
      * @Route("/modifierAnnonce/{idannonce}", name="oc_Modifier_Annonce")
      */
